@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李博远 - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(39, 41, 53);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding-top: 100px; /* Adjusted for fixed header */
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(39, 41, 53);
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .menu-bar {
+            position: relative;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .hamburger-menu {
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .menu-bar .menu-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: rgb(39, 41, 53);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .menu-bar:hover .menu-content {
+            display: block;
+        }
+        .menu-content a {
+            color: #ffffff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+        }
+        .menu-content a:hover {
+            background-color: #575a73;
+        }
+        .profile-info {
+            text-align: center;
+        }
+        .profile-info h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .profile-info .icons a {
+            color: rgb(187, 222, 251);
+            margin-right: 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+        }
+        .main-content {
+            background-color: rgb(39, 41, 53);
+            padding: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .main-content section {
+            margin-bottom: 30px;
+        }
+        .main-content h3 {
+            border-bottom: 2px solid #3282b8;
+            padding-bottom: 5px;
+            font-size: 2em; /* Increased font size */
+        }
+        .main-content p, .main-content ul {
+            margin: 10px 0;
+        }
+        .main-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .main-content ul li {
+            margin: 5px 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .logo {
+            cursor: pointer;
+            margin-right: 30px; /* Adjusted margin for better alignment */
+            font-size: 1.2em; /* Increased font size for the moon icon */
+        }
+
+        /* Add padding to sections for better visibility on scroll */
+        section {
+            padding-top: 70px;
+            margin-top: -70px;
+        }
+        .menu-bar {
+            margin-right: 30px; /* Added margin for better alignment */
+        }
+        /* Added CSS to remove underline from the link */
+        .profile-info a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Boyuan Li</h1>
+            <div style="display: flex; align-items: center;">
+                <div class="logo">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="menu-bar">
+                    <span class="hamburger-menu"><i class="fas fa-bars"></i></span>
+                    <div class="menu-content">
+                        <a href="#biography">Biography</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#hobbies">Hobbies</a>
+                        <a href="#education">Education</a>
+                        <a href="#services">Services</a>
+                        <a href="#contact">Contact Info</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="profile-info">
+            <h2>李博远</h2>
+            <p><a href="http://www.swu.edu.cn/" style="color: rgb(187, 222, 251);" target="_blank">西南大学</a></p>
+            <p>电气工程及其自动化</p>
+            <p>BS (Bachelor of Science) student</p>
+            <div class="icons">
+                <a href="mailto:1920295921@qq.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/xiaoeyuSWU"><i class="fab fa-github"></i></a>
+                <a href="https://ieeexplore.ieee.org/Xplore/home.jsp" target="_blank" style="color: rgb(187, 222, 251);"><i class="fas fa-university"></i></a>
+
+            </div>
+        </div>
+        <div class="main-content">
+            <section id="biography">
+                <h3>Biography</h3>
+                <p>Hi！我叫李博远，是<a href="http://gcjsxy.swu.edu.cn/" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">西南大学工程技术学院</a>电气工程及其自动化专业的2024级本科生。<br>在科研方面，我曾以核心作者的身份与其他研究者共同发表过一篇SCI论文，此论文刊登在SCI顶刊<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">IEEE Transactions on Vehicular Technology</a>上。并且我参加过其他的一些论文的创作以及一些竞赛和项目。<br>我是一名对创新和技术充满热情的学生，并致力于在自己感兴趣的领域提升自己的知识和技能。我感兴趣的研究领域有<a href="http://gcjsxy.swu.edu.cn/info/1054/1707.htm" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">电气工程</a>、电力电子技术、<a href="https://baike.baidu.com/item/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/3729729" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">深度学习</a>和<a href="https://zhuanlan.zhihu.com/p/38246447" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">量化交易算法</a>等。</p>
+            </section>
+            <section id="projects">
+                <h3>Projects</h3>
+                <div class="job">
+                    <h4>1、一篇SCI论文 -- 关于自动驾驶车辆的轨迹预测</h4>
+                    <ul>
+                        <li>以核心作者的身份与其他研究者共同发表了一篇SCI论文。此论文发表在SCI期刊：IEEE（电气与电子工程师协会）的<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">IEEE Transactions on Vehicular Technology</a>上，期刊影响因子=6.8。论文主要涉及深度学习、危险指数图、自动驾驶车辆的轨迹预测等。</li>
+                        <li>关于 “你才大一，怎么就发SCI了” 的解释。<br>1）高中时我便利用课余时间学习自己感兴趣的领域的知识，并且自2022年入学后我更加专注于这些方面。因此，当我开始参与这篇论文的创作时，已经在相关领域积累了丰富的知识。<br>2）这篇论文是我与其他人共同付出大量努力的成果而并非我一个人的成果。还记得当初因时间紧迫，我们大年初一还在开组会。</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>2、一个基于pygame的定制化<a href="https://github.com/xiaoeyuSWU/snake" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">贪吃蛇小游戏</a></h4>
+                    <ul>
+                        <li>在经典的贪吃蛇小游戏的基础上进行了多个定制化的改进和添加，以增加游戏的趣味性和挑战性。</li>
+                        <li>使用Snake类定义了蛇的行为，包括移动、增长、碰撞检测等。使用Particle类定义了粒子效果的属性和行为。</li>
+                        <li>使用了一些其他的辅助函数定义了绘制食物、地雷、奖励食物、心形、网格等功能。</li>
+                        <li>游戏通过引入多种视觉效果和复杂的游戏机制，使得传统的贪吃蛇游戏更具趣味性和挑战性。
+                        </li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>3、一个基于机器学习的GCC编译器版本识别问题</h4>
+                    <ul>
+                        <li>数学建模比赛。论文共计30页，其中19页正文，11页附录（含代码）。</li>
+                        <li>经测试集测试，模型的准确率达90%。</li>
+                        <li>具体内容和项目代码会在比赛评奖结束后在此网站完善。</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>4、互联网+创新创业大赛-智慧养老生活服务优化模式</h4>
+                    <ul>
+                        <li>采用MVC框架，引入物联网技术。</li>
+                        <li>计划书共计58页，涵盖项目简介、服务介绍、市场概况、营销计划、发展规划、管理团队、财务计划、风险控制等全方面的内容。我在团队中主要负责路演和答辩等内容。</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>5、一个使用Transformer进行时间序列数据预测的模型</h4>
+                    <ul>
+                        <li>使用<a href="https://tushare.pro/" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">Tushare</a></h4>的数据接口获取数据，进行模型的训练和完善。使用了滑动窗口的方法创建输入序列，并利用MinMaxScaler对每个序列进行归一化处理，确保数据在同一尺度上进行训练。</li>
+                        <li>项目采用了Transformer的编码器结构，结合位置编码，用于处理时间序列数据，并在最后通过全连接层进行分类。</li>
+                        <li>通过实验调整模型的多个超参数，包括输入维度、隐藏层大小、编码层数、注意力头数、学习率、批次大小和训练轮数等。</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>6、OpennessGPT: 一个基于开放性人格特质的文本生成模型</h4>
+                    <ul>
+                        <li>OpennessGPT是一个基于GPT模型的文本生成项目，旨在通过训练两个不同的语言模型（分别针对高开放性和低开放性人格特质的文本）来生成风格迥异的文本。</li>
+                        <li>这个项目利用<a href="https://github.com/huggingface" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">Hugging Face</a></h4>的transformers库，并通过自定义数据集类和数据加载函数进行训练和文本生成。</li>
+                        <li>该项目训练了两个独立的语言模型：一个用于生成高开放性文本，另一个用于生成低开放性文本。不同的模型使用不同的训练数据，分别从两个数据集目录加载文本文件。</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>7、一个采用HTML和CSS设计的个人网站的建立</h4>
+                    <ul>
+                        <li><a href="https://xiaoeyuswu.github.io/my-personal-website/" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">Boyuan Li Portfolio</a></h4>是一个展示我的个人信息、学术成就、项目经历和联系方式的在线个人作品集网站。</li>
+                        <li>这个网站旨在提供一个简洁、直观且具有互动性的页面，使访问者（比如你）能够方便地浏览和了解我的背景和成就。</li>
+                        <li>网站采用HTML和CSS设计，实现了响应式布局，确保在不同设备（桌面、平板和手机）上都有良好的用户体验。</li>
+                        <li>使用@media查询对不同屏幕宽度进行优化，确保导航菜单和内容显示的适配性。使用JavaScript动态修改页面的背景颜色、文字颜色和其他样式属性。</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="hobbies">
+                <h3>Hobbies</h3>
+                <p>我喜欢编程🤖、跑步🏃‍、打羽毛球🏸、<a href="https://zhuanlan.zhihu.com/p/270606457" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">UNO🃏</a></h4>、狼人杀🐺、冥想🧘‍♀️和阅读📕。<br>在空闲时间，我喜欢探索新技术。这不仅可以提升我的专业技能，还可以开阔我的视野。<br>冥想（包含<a href="https://zhuanlan.zhihu.com/p/401015499" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">Youga Nidra</a></h4>）是我日常生活中的重要部分，通过冥想，我能够放松身心，提升专注力和内在的平静。在繁忙的学业和项目之间，冥想帮助我保持平衡和清晰的思维。</p>
+            </section>
+
+            <section id="education">
+                <h3>Education</h3>
+                <div class="job">
+                    <h4>2022.9-2023.6, 西南大学, 俄语</h4>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>2023.9-2024.6, 西南大学, 机械设计制造及其自动化</h4>
+                    <ul>
+                        <li>主修高等数学，工程制图等。大学计算机基础85，文献检索与科技论文写作85，大学英语86。</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h4>2024.6-至今, 西南大学, 电气工程及自动化</h4>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+                <p></p>
+                <p></p>
+            </section>
+ 
+            <section id="services">
+                <h3>Services</h3>
+                <p>西南大学2023级机械设计制造及其自动化一班，学习委员</p>
+                <p>西南大学党委学生工作部融媒体中心<a href="https://weibo.com/u/1973665271" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">微博部</a></h4>，干事</p>
+                <p>西南大学国际教育交流学生会，干事</p>
+            </section>
+
+            <section id="contact">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <p><i class="fas fa-phone"></i> 18202391823 
+                </div>
+                <div class="contact-item">
+                    <p><i class="fas fa-envelope"></i> 1920295921@qq.com 
+                </div>
+                <div class="contact-item">
+                    <p><i class="fab fa-weixin"></i> quant_xey2004 
+                </div>
+                <div class="contact-item">
+                    <p><i class="fab fa-qq"></i> 1920295921 
+                </div>
+            </section>
+            
+            <style>
+                .copy-btn {
+                    background-color: rgb(187, 222, 251);
+                    color: #000;
+                    border: none;
+                    padding: 3px 8px; /* Adjusted padding for smaller button */
+                    margin-left: 10px;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    font-size: 0.8em; /* Adjusted font size for smaller button */
+                }
+                .contact-item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 10px;
+                }
+            </style>
+            
+            <script>
+                document.querySelectorAll('.copy-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const textToCopy = this.getAttribute('data-clipboard-text');
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            alert('Copied to clipboard: ' + textToCopy);
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                        });
+                    });
+                });
+            </script>
+            
+            
+        </div>
+    </div>
+    <script>
+        const logo = document.querySelector('.logo');
+        const body = document.querySelector('body');
+        const header = document.querySelector('header');
+        const mainContent = document.querySelector('.main-content');
+        const menuContent = document.querySelector('.menu-content');
+        const menuBar = document.querySelector('.menu-bar');
+
+        logo.addEventListener('click', () => {
+            if (body.style.backgroundColor === 'rgb(255, 255, 255)') {
+                body.style.backgroundColor = 'rgb(39, 41, 53)';
+                body.style.color = '#ffffff';
+                header.style.backgroundColor = 'rgb(39, 41, 53)';
+                mainContent.style.backgroundColor = 'rgb(39, 41, 53)';
+                logo.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.style.backgroundColor = 'rgb(255, 255, 255)';
+                body.style.color = '#000000';
+                header.style.backgroundColor = 'rgb(255, 255, 255)';
+                mainContent.style.backgroundColor = 'rgb(255, 255, 255)';
+                logo.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        document.querySelectorAll('.menu-content a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Hide the menu content after selection on mobile
+                if (window.innerWidth <= 768) {
+                    menuContent.style.display = 'none';
+                }
+            });
+        });
+
+        // Close the menu if clicking outside of it on mobile
+        document.addEventListener('click', function(event) {
+            if (!menuBar.contains(event.target) && window.innerWidth <= 768) {
+                menuContent.style.display = 'none';
+            }
+        });
+
+        // Ensure menu shows when hovering on desktop
+        menuBar.addEventListener('mouseenter', function() {
+            if (window.innerWidth > 768) {
+                menuContent.style.display = 'block';
+            }
+        });
+
+        menuBar.addEventListener('mouseleave', function() {
+            if (window.innerWidth > 768) {
+                menuContent.style.display = 'none';
+            }
+        });
+
+        // Toggle menu content on mobile
+        menuBar.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                if (menuContent.style.display === 'block') {
+                    menuContent.style.display = 'none';
+                } else {
+                    menuContent.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
