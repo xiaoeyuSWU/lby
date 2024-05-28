@@ -163,7 +163,70 @@
             color: #000000;
         }
 
+
+        #反馈 label {
+            margin-bottom: 5px; /* Add some space below the labels */
+            display: inline-block; /* Ensure labels are block elements for consistent spacing */
+        }
+
+        #反馈 input[type="text"],
+        #反馈 input[type="email"],
+        #反馈 textarea {
+            background-color: rgb(39, 41, 53); /* Default dark mode background */
+            color: #ffffff; /* Default dark mode text color */
+            border: 1px solid #ffffff; /* Default dark mode border color */
+            padding: 10px; /* Increase padding for larger input fields */
+            border-radius: 10px; /* Increase border-radius for rounded corners */
+            margin-bottom: 20px; /* Increase margin for better spacing */
+            margin-top: 5px; /* Add space between the label and input */
+            font-size: 1em; /* Increase font size */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body.light-mode #反馈 input[type="text"],
+        body.light-mode #反馈 input[type="email"],
+        body.light-mode #反馈 textarea {
+            background-color: rgb(255, 255, 255); /* Light mode background */
+            color: #000000; /* Light mode text color */
+            border-color: #000000; /* Light mode border color */
+            padding: 10px; /* Ensure padding is consistent */
+            border-radius: 10px; /* Ensure border-radius is consistent */
+            margin-bottom: 20px; /* Increase margin for better spacing */
+            margin-top: 5px; /* Add space between the label and input */
+            font-size: 1em; /* Ensure font size is consistent */
+        }
+        
+        #反馈 input[type="submit"] {
+            background-color: rgb(187, 222, 251); /* Button background color */
+            color: #000; /* Button text color */
+            border: 1px solid #ffffff; /* Border color */
+            padding: 10px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 1em; /* Font size */
+            cursor: pointer; /* Change cursor on hover */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        #反馈 input[type="submit"]:hover {
+            background-color: #ffffff; /* Background color on hover */
+            color: #000000; /* Text color on hover */
+            border-color: #000000; /* Border color on hover */
+        }
+
     </style>
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RLHCKJMSZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1RLHCKJMSZ');
+    </script>
+
 </head>
 <body>
     <div class="container">
@@ -328,6 +391,21 @@
                     <p><i class="fas fa-map-marker-alt"></i> 重庆市北碚区天生路2号西南大学，400715</p>
                 </div>
             </section>
+
+
+            <section id="反馈">
+                <h3>反馈</h3>
+                <form action="https://formspree.io/f/mvoenngy" method="post">
+                    <label for="name">姓名/昵称:</label><br>
+                    <input type="text" id="name" name="name"><br>
+                    <label for="email">联系方式(可不填):</label><br>
+                    <input type="email" id="email" name="email"><br>
+                    <label for="message">留言:</label><br>
+                    <textarea id="message" name="message" required></textarea><br>
+                    <input type="submit" value="发送">
+                </form>
+            </section>
+            
             
             <style>
                 .copy-btn {
@@ -392,6 +470,7 @@
                 mainContent.style.backgroundColor = 'rgb(255, 255, 255)';
                 logo.innerHTML = '<i class="fas fa-sun"></i>';
             }
+            updateFormStyle(); // Ensure form style updates when the mode changes
         });
     
         document.querySelectorAll('.menu-content a').forEach(anchor => {
@@ -435,7 +514,32 @@
                 menuContent.style.display = 'block';
             }
         });
+    
+        // Function to update form style based on mode
+        function updateFormStyle() {
+            const body = document.querySelector('body');
+            const formInputs = document.querySelectorAll('#反馈 input, #反馈 textarea');
+            if (body.classList.contains('light-mode')) {
+                formInputs.forEach(input => {
+                    input.style.backgroundColor = 'rgb(255, 255, 255)'; // Light mode background
+                    input.style.color = '#000000'; // Light mode text color
+                    input.style.borderColor = '#000000'; // Light mode border color
+                });
+            } else {
+                formInputs.forEach(input => {
+                    input.style.backgroundColor = 'rgb(39, 41, 53)'; // Dark mode background
+                    input.style.color = '#ffffff'; // Dark mode text color
+                    input.style.borderColor = '#ffffff'; // Dark mode border color
+                });
+            }
+        }
+    
+        // Initial form style update on page load
+        window.addEventListener('load', () => {
+            updateFormStyle();
+        });
     </script>
+    
     
 </body>
 </html>
