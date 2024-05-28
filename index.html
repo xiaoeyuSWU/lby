@@ -173,14 +173,13 @@
         }
 
 
-        #反馈 label {
+        #留言板 label {
             margin-bottom: 5px; /* Add some space below the labels */
             display: inline-block; /* Ensure labels are block elements for consistent spacing */
         }
 
-        #反馈 input[type="text"],
-        #反馈 input[type="email"],
-        #反馈 textarea {
+        #留言板 input[type="text"],
+        #留言板 input[type="email"] {
             background-color: rgb(39, 41, 53); /* Default dark mode background */
             color: #ffffff; /* Default dark mode text color */
             border: 1px solid #ffffff; /* Default dark mode border color */
@@ -192,9 +191,25 @@
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
-        body.light-mode #反馈 input[type="text"],
-        body.light-mode #反馈 input[type="email"],
-        body.light-mode #反馈 textarea {
+        #留言板 textarea {
+            background-color: rgb(39, 41, 53); /* Default dark mode background */
+            color: #ffffff; /* Default dark mode text color */
+            border: 1px solid #ffffff; /* Default dark mode border color */
+            padding: 10px; /* Increase padding for larger input fields */
+            border-radius: 10px; /* Increase border-radius for rounded corners */
+            margin-bottom: 20px; /* Increase margin for better spacing */
+            margin-top: 5px; /* Add space between the label and input */
+            font-size: 1em; /* Increase font size */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            height: 200px; /* Increase the height of the textarea */
+            width: 400px; /* Set the width of the textarea */
+
+        }
+
+
+
+        body.light-mode #留言板 input[type="text"],
+        body.light-mode #留言板 input[type="email"] {
             background-color: rgb(255, 255, 255); /* Light mode background */
             color: #000000; /* Light mode text color */
             border-color: #000000; /* Light mode border color */
@@ -204,8 +219,24 @@
             margin-top: 5px; /* Add space between the label and input */
             font-size: 1em; /* Ensure font size is consistent */
         }
+
+        body.light-mode #留言板 textarea {
+            background-color: rgb(255, 255, 255); /* Light mode background */
+            color: #000000; /* Light mode text color */
+            border-color: #000000; /* Light mode border color */
+            padding: 10px; /* Ensure padding is consistent */
+            border-radius: 10px; /* Ensure border-radius is consistent */
+            margin-bottom: 20px; /* Increase margin for better spacing */
+            margin-top: 5px; /* Add space between the label and input */
+            font-size: 1em; /* Ensure font size is consistent */
+            height: 200px; /* Increase the height of the textarea */
+            width: 400px; /* Set the width of the textarea */
+
+        }
+
+
         
-        #反馈 input[type="submit"] {
+        #留言板 input[type="submit"] {
             background-color: rgb(187, 222, 251); /* Button background color */
             color: #000; /* Button text color */
             border: 1px solid #ffffff; /* Border color */
@@ -216,7 +247,7 @@
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
-        #反馈 input[type="submit"]:hover {
+        #留言板 input[type="submit"]:hover {
             background-color: #ffffff; /* Background color on hover */
             color: #000000; /* Text color on hover */
             border-color: #000000; /* Border color on hover */
@@ -243,6 +274,8 @@
                         <a href="#教育经历">教育经历</a>
                         <a href="#担任职务">担任职务</a>
                         <a href="#联系方式">联系方式</a>
+                        <a href="#留言板">留言板</a>
+
                     </div>
                 </div>
             </div>
@@ -391,12 +424,12 @@
             </section>
 
 
-            <section id="反馈">
-                <h3>反馈</h3>
+            <section id="留言板">
+                <h3>留言板</h3>
                 <form action="https://formspree.io/f/mvoenngy" method="post">
-                    <label for="name">姓名/昵称:</label><br>
+                    <label for="name">姓名/昵称（可不填）:</label><br>
                     <input type="text" id="name" name="name"><br>
-                    <label for="email">联系方式(可不填):</label><br>
+                    <label for="email">联系方式（可不填）:</label><br>
                     <input type="email" id="email" name="email"><br>
                     <label for="message">留言:</label><br>
                     <textarea id="message" name="message" required></textarea><br>
@@ -516,7 +549,7 @@
         // Function to update form style based on mode
         function updateFormStyle() {
             const body = document.querySelector('body');
-            const formInputs = document.querySelectorAll('#反馈 input, #反馈 textarea');
+            const formInputs = document.querySelectorAll('#留言板 input, #留言板 textarea');
             if (body.classList.contains('light-mode')) {
                 formInputs.forEach(input => {
                     input.style.backgroundColor = 'rgb(255, 255, 255)'; // Light mode background
