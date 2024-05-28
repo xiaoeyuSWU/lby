@@ -14,6 +14,7 @@
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
+        
         .container {
             width: 80%;
             margin: auto;
@@ -59,13 +60,25 @@
         .menu-bar:hover .menu-content {
             display: block;
         }
+        .menu-content {
+            display: block; /* Ensure the menu content is displayed as a block */
+            position: absolute;
+            right: 0;
+            background-color: rgb(39, 41, 53);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
         .menu-content a {
             color: #ffffff;
             padding: 12px 16px;
             text-decoration: none;
-            display: block;
+            display: inline-block; /* Ensure horizontal alignment */
             text-align: right;
+            white-space: nowrap; /* Prevent text from wrapping */
         }
+
+
         .menu-content a:hover {
             background-color: #575a73;
         }
@@ -130,6 +143,26 @@
         .profile-info a {
             text-decoration: none;
         }
+
+
+        body.light-mode {
+            background-color: rgb(255, 255, 255);
+            color: #000000;
+        }
+
+        body.light-mode header {
+            background-color: rgb(255, 255, 255);
+        }
+
+        body.light-mode .menu-content {
+            background-color: rgb(255, 255, 255);
+            color: #000000;
+        }
+
+        body.light-mode .menu-content a {
+            color: #000000;
+        }
+
     </style>
 </head>
 <body>
@@ -143,12 +176,12 @@
                 <div class="menu-bar">
                     <span class="hamburger-menu"><i class="fas fa-bars"></i></span>
                     <div class="menu-content">
-                        <a href="#biography">Biography</a>
-                        <a href="#projects">Projects</a>
-                        <a href="#hobbies">Hobbies</a>
-                        <a href="#education">Education</a>
-                        <a href="#services">Services</a>
-                        <a href="#contact">Contact Info</a>
+                        <a href="#个人简介">个人简介</a>
+                        <a href="#项目经历">项目经历</a>
+                        <a href="#兴趣爱好">兴趣爱好</a>
+                        <a href="#教育经历">教育经历</a>
+                        <a href="#担任职务">担任职务</a>
+                        <a href="#联系方式">联系方式</a>
                     </div>
                 </div>
             </div>
@@ -166,17 +199,16 @@
             </div>
         </div>
         <div class="main-content">
-            <section id="biography">
-                <h3>Biography</h3>
+            <section id="个人简介">
+                <h3>个人简介</h3>
                 <p>Hi！我叫李博远，是<a href="http://gcjsxy.swu.edu.cn/" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">西南大学工程技术学院</a>电气工程及其自动化专业的2024级本科生。<br>在科研方面，我曾以核心作者的身份与其他研究者共同发表过一篇SCI论文，此论文刊登在SCI顶刊<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">IEEE Transactions on Vehicular Technology</a>上。并且我参加过其他的一些论文的创作以及一些竞赛和项目。<br>我是一名对创新和技术充满热情的学生，并致力于在自己感兴趣的领域提升自己的知识和技能。我感兴趣的研究领域有<a href="http://gcjsxy.swu.edu.cn/info/1054/1707.htm" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">电气工程</a>、电力电子技术、<a href="https://baike.baidu.com/item/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/3729729" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">深度学习</a>和<a href="https://zhuanlan.zhihu.com/p/38246447" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">量化交易算法</a>等。</p>
             </section>
-            <section id="projects">
-                <h3>Projects</h3>
+            <section id="项目经历">
+                <h3>项目经历</h3>
                 <div class="job">
                     <h4>1、一篇SCI论文 -- 关于自动驾驶车辆的轨迹预测</h4>
                     <ul>
                         <li>以核心作者的身份与其他研究者共同发表了一篇SCI论文。此论文发表在SCI期刊：IEEE（电气与电子工程师协会）的<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">IEEE Transactions on Vehicular Technology</a>上，期刊影响因子=6.8。论文主要涉及深度学习、危险指数图、自动驾驶车辆的轨迹预测等。</li>
-                        <li>关于 “你才大一，怎么就发SCI了” 的解释。<br>1）高中时我便利用课余时间学习自己感兴趣的领域的知识，并且自2022年入学后我更加专注于这些方面。因此，当我开始参与这篇论文的创作时，已经在相关领域积累了丰富的知识。<br>2）这篇论文是我与其他人共同付出大量努力的成果而并非我一个人的成果。还记得当初因时间紧迫，我们大年初一还在开组会。</li>
                     </ul>
                 </div>
                 <div class="job">
@@ -230,13 +262,13 @@
                     </ul>
                 </div>
             </section>
-            <section id="hobbies">
-                <h3>Hobbies</h3>
+            <section id="兴趣爱好">
+                <h3>兴趣爱好</h3>
                 <p>我喜欢编程🤖、跑步🏃‍、打羽毛球🏸、<a href="https://zhuanlan.zhihu.com/p/270606457" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">UNO🃏</a></h4>、狼人杀🐺、冥想🧘‍♀️和阅读📕。<br>在空闲时间，我喜欢探索新技术。这不仅可以提升我的专业技能，还可以开阔我的视野。<br>冥想（包含<a href="https://zhuanlan.zhihu.com/p/401015499" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">Youga Nidra</a></h4>）是我日常生活中的重要部分，通过冥想，我能够放松身心，提升专注力和内在的平静。在繁忙的学业和项目之间，冥想帮助我保持平衡和清晰的思维。</p>
             </section>
 
-            <section id="education">
-                <h3>Education</h3>
+            <section id="教育经历">
+                <h3>教育经历</h3>
                 <div class="job">
                     <h4>2022.9-2023.6, 西南大学, 俄语</h4>
                     <ul>
@@ -250,7 +282,7 @@
                     </ul>
                 </div>
                 <div class="job">
-                    <h4>2024.6-至今, 西南大学, 电气工程及自动化</h4>
+                    <h4>2024.9-至今, 西南大学, 电气工程及自动化</h4>
                     <ul>
                         <li></li>
                     </ul>
@@ -259,15 +291,15 @@
                 <p></p>
             </section>
  
-            <section id="services">
-                <h3>Services</h3>
+            <section id="担任职务">
+                <h3>担任职务</h3>
                 <p>西南大学2023级机械设计制造及其自动化一班，学习委员</p>
                 <p>西南大学党委学生工作部融媒体中心<a href="https://weibo.com/u/1973665271" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">微博部</a></h4>，干事</p>
                 <p>西南大学国际教育交流学生会，干事</p>
             </section>
 
-            <section id="contact">
-                <h3>Contact Info</h3>
+            <section id="联系方式">
+                <h3>联系方式</h3>
                 <div class="contact-item">
                     <p><i class="fas fa-phone"></i> 18202391823 
                 </div>
@@ -324,19 +356,21 @@
         const menuContent = document.querySelector('.menu-content');
         const menuBar = document.querySelector('.menu-bar');
         const hamburgerMenu = document.querySelector('.hamburger-menu');
-
+    
         function closeMenu() {
             menuContent.style.display = 'none';
         }
-
+    
         logo.addEventListener('click', () => {
-            if (body.style.backgroundColor === 'rgb(255, 255, 255)') {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
                 body.style.backgroundColor = 'rgb(39, 41, 53)';
                 body.style.color = '#ffffff';
                 header.style.backgroundColor = 'rgb(39, 41, 53)';
                 mainContent.style.backgroundColor = 'rgb(39, 41, 53)';
                 logo.innerHTML = '<i class="fas fa-moon"></i>';
             } else {
+                body.classList.add('light-mode');
                 body.style.backgroundColor = 'rgb(255, 255, 255)';
                 body.style.color = '#000000';
                 header.style.backgroundColor = 'rgb(255, 255, 255)';
@@ -344,7 +378,7 @@
                 logo.innerHTML = '<i class="fas fa-sun"></i>';
             }
         });
-
+    
         document.querySelectorAll('.menu-content a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -357,27 +391,27 @@
                 }
             });
         });
-
+    
         // Close the menu if clicking outside of it on mobile
         document.addEventListener('click', function(event) {
             if (!menuContent.contains(event.target) && !menuBar.contains(event.target) && window.innerWidth <= 768) {
                 closeMenu();
             }
         });
-
+    
         // Ensure menu shows when hovering on desktop
         menuBar.addEventListener('mouseenter', function() {
             if (window.innerWidth > 768) {
                 menuContent.style.display = 'block';
             }
         });
-
+    
         menuBar.addEventListener('mouseleave', function() {
             if (window.innerWidth > 768) {
                 menuContent.style.display = 'none';
             }
         });
-
+    
         // Toggle menu content on mobile
         hamburgerMenu.addEventListener('click', () => {
             if (menuContent.style.display === 'block') {
@@ -386,8 +420,7 @@
                 menuContent.style.display = 'block';
             }
         });
-
-
     </script>
+    
 </body>
 </html>
