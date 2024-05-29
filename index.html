@@ -505,7 +505,24 @@
             min-height: 100vh; /* Ensure container covers at least 100% of the viewport height */
         }
 
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 10px;
+            background-color: white; /* Change from black to white */
+            width: 0%;
+            z-index: 1001; /* Ensure it's above other elements */
+            border-radius: 7px; /* Add this line */
 
+        }
+
+
+
+
+        body.light-mode #progress-bar {
+            background-color: black;
+        }
 
 
 
@@ -522,6 +539,8 @@
 <body>
     <div class="container">
         <header>
+            <div id="progress-bar"></div>
+
             <h1>Boyuan Li</h1>
             <div style="display: flex; align-items: center;">
                 <div class="logo">
@@ -540,6 +559,7 @@
 
                     </div>
                 </div>
+
             </div>
         </header>
         <div class="profile-info">
@@ -759,6 +779,7 @@
                 header.style.backgroundColor = 'rgb(39, 41, 53)';
                 mainContent.style.backgroundColor = 'rgb(39, 41, 53)';
                 logo.innerHTML = '<i class="fas fa-moon"></i>';
+                document.getElementById('progress-bar').style.backgroundColor = 'white'; // Ensure this line is present
             } else {
                 body.classList.add('light-mode');
                 body.style.backgroundColor = 'rgb(255, 255, 255)';
@@ -766,9 +787,12 @@
                 header.style.backgroundColor = 'rgb(255, 255, 255)';
                 mainContent.style.backgroundColor = 'rgb(255, 255, 255)';
                 logo.innerHTML = '<i class="fas fa-sun"></i>';
+                document.getElementById('progress-bar').style.backgroundColor = 'black'; // Ensure this line is present
             }
             updateFormStyle(); // Ensure form style updates when the mode changes
         });
+
+
 
 
     
@@ -842,6 +866,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
+
+        window.addEventListener('scroll', function() {
+            const progressBar = document.getElementById('progress-bar');
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
     </script>
     
     <section class="striped-background">
