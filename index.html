@@ -803,10 +803,11 @@
                     block: 'start'
                 });
                 if (window.innerWidth <= 768) {
-                    closeMenu();
+                    closeMenu(); // 确保在移动设备上点击链接后菜单关闭
                 }
             });
         });
+
     
         // Close the menu if clicking outside of it on mobile
         document.addEventListener('click', function(event) {
