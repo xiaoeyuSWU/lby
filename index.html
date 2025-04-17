@@ -29,6 +29,18 @@
             letter-spacing: 0.08em; /* Add this line */
             line-height: 2.0; /* Add this line */
         }
+
+                .profile-photo {
+            width: 150px;          /* 设置图片宽度 */
+            height: 150px;         /* 设置图片高度 */
+            border-radius: 50%;    /* 这个属性让图片变圆形 */
+            object-fit: cover;     /* 保持图片比例填充 */
+            margin: 15px 0;        /* 上下留出间距 */
+            border: 3px solid #fff; /* 可选：添加白色边框 */
+            display: block;        /* 确保居中显示 */
+            margin-left: auto;
+            margin-right: auto;
+        }
         
         .container {
             width: 80%;
@@ -578,6 +590,8 @@
         <div class="profile-info">
 
             <h2>李博远</h2>
+            <img src="my_photo.jpg" alt="李博远" class="profile-photo">
+
             <p><a href="http://www.swu.edu.cn/xxgl_jyjs.html" style="color: rgb(187, 222, 251);" target="_blank">西南大学</a></p>
             <p><a href="http://gcjsxy.swu.edu.cn/info/1054/1707.htm" style="color: rgb(187, 222, 251); text-decoration: none;" target="_blank">电气工程及其自动化</a></p>
             <div class="icons">
