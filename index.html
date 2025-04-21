@@ -41,6 +41,34 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* 在全局样式中添加 */
+        /* 修改后的CSS */
+        .heart-animation {
+            position: fixed;
+            pointer-events: none;
+            animation: float 4s ease-out forwards;
+            font-size: 24px;
+            z-index: 9999;
+            /* 移除固定颜色 */
+            filter: 
+                drop-shadow(0 2px 2px rgba(0,0,0,0.2)) 
+                hue-rotate(calc(var(--hue) * 1deg)); /* 颜色滤镜 */
+        }
+
+        /* 通过CSS变量控制色调 */
+        @keyframes float {
+            0% { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+                --hue: 0; /* 初始色调 */
+            }
+            100% { 
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+                --hue: 360; /* 色调变化 */
+            }
+        }
         
         .container {
             width: 80%;
@@ -923,8 +951,33 @@
                 menuContent.style.display = 'none';
             }
         });
+
+        // 在DOM加载完成后添加
+        // 修改后的点击事件处理
+        document.addEventListener('click', (e) => {
+            // 心形符号库
+            const hearts = ['❤️', '🧡', '💛', '💚', '💙', '💜'];
+            
+            // 创建心形元素
+            const heart = document.createElement('div');
+            heart.className = 'heart-animation';
+            
+            // 随机选择心形符号
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // 精确定位（需根据实际字体大小调整偏移量）
+            const fontSize = 24; // 与CSS中的font-size保持一致
+            heart.style.left = `${e.clientX - fontSize/2}px`;
+            heart.style.top = `${e.clientY - fontSize/2}px`;
+            
+            // 添加到页面
+            document.body.appendChild(heart);
+            
+            // 自动清理
+            setTimeout(() => heart.remove(), 4000);
+        });
     
-        // Toggle menu content on mobile
+
         hamburgerMenu.addEventListener('click', () => {
             if (menuContent.style.display === 'block') {
                 closeMenu();
