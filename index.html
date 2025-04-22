@@ -582,16 +582,22 @@
             margin: 20px 0;
         }
 
+        /* 修改原来的.download-btn样式 */
         .download-btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 8px 20px;  /* 减小内边距 */
             background-color: rgba(187, 222, 251, 0.2);
             color: rgb(187, 222, 251);
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 20px;  /* 略微减小圆角 */
             transition: all 0.3s ease;
             border: 1px solid rgba(187, 222, 251, 0.5);
-            font-size: 16px;
+            font-size: 14px;  /* 减小字体大小 */
+        }
+
+        .download-btn i {
+            margin-right: 6px;  /* 减小图标间距 */
+            font-size: 12px;  /* 可选：减小图标大小 */
         }
 
         .download-btn:hover {
@@ -600,9 +606,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .download-btn i {
-            margin-right: 8px;
-        }
 
 
 
