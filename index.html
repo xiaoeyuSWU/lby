@@ -53,22 +53,25 @@
         }
 
         #welcome-screen button {
-            margin: 20px auto 0;  /* 修改此处 */
-            display: block;       /* 新增这行 */
-
-            padding: 10px 20px;
-            background-color: #1877f2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em; /* 增大字体大小 */
-
+            margin: 20px auto 0;
+            display: block;
+            padding: 15px 30px; /* 更大的按钮尺寸 */
+            background-color: rgba(187, 222, 251, 0.2);
+            color: rgb(187, 222, 251);
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(187, 222, 251, 0.5);
+            font-size: 20px; /* 更大的字体 */
         }
 
         #welcome-screen button:hover {
-            background-color: #166fe5; /* 修改hover时的颜色为相近的RGB值 */
+            background-color: rgba(187, 222, 251, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+
 
         body {
             font-family: Arial, sans-serif;
