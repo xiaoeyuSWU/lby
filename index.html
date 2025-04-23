@@ -19,6 +19,53 @@
     <title>李博远@西南大学</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 80%;
+        }
+
+        .welcome-content h1 {
+            font-size: 2.5em;
+        }
+
+        .welcome-content p {
+            font-size: 1.2em;
+        }
+
+        #welcome-screen button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #welcome-screen button:hover {
+            background-color: #0056b3;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #000000;
@@ -620,7 +667,14 @@
     <div class="container">
         <header>
             <div id="progress-bar"></div>
-
+            <div id="welcome-screen" class="welcome-screen">
+                <div class="welcome-content">
+                    <p>欢迎来到我的个人网站！点击屏幕有彩蛋，滑至底部有留言板哦。</p>
+                    <p>感谢访问~</p>
+                    <button id="close-welcome">我知道了，进入网站</button>
+                </div>
+            </div>
+            
             <h1> </h1>
             <div style="display: flex; align-items: center;">
                 <div class="logo">
@@ -662,6 +716,8 @@
                 </a>
             </div>
 
+
+            
         </div>
         <div class="main-content">
             <section id="个人简介">
@@ -925,7 +981,20 @@
             menuContent.style.display = 'none';
         }
 
-        
+        // 显示欢迎界面
+        window.addEventListener('load', function() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const closeButton = document.getElementById('close-welcome');
+
+            // 点击按钮时关闭欢迎界面
+            closeButton.addEventListener('click', function() {
+                welcomeScreen.style.opacity = '0';  // 逐渐消失
+                setTimeout(function() {
+                    welcomeScreen.style.display = 'none';  // 隐藏欢迎界面
+                }, 300);  // 等待动画结束后隐藏
+            });
+        });
+
     
         logo.addEventListener('click', () => {
             if (body.classList.contains('light-mode')) {
