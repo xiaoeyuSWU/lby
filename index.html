@@ -74,15 +74,30 @@
             border-radius: 3px;
         }
         
-        .card {
+        .card, .glassmorphism {
             transition: all 0.3s ease;
             border-radius: 0.75rem;
             overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        .card::before, .glassmorphism::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.1));
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover::before, .glassmorphism:hover::before {
+            transform: scaleY(1);
         }
         
         .btn-primary {
@@ -592,3 +607,4 @@
     </script>
 </body>
 </html>
+    
