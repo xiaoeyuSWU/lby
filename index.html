@@ -475,7 +475,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const welcomeScreen = document.getElementById('welcome-screen');
             const closeButton = document.getElementById('close-welcome');
+
             
+            // 强制显示欢迎界面（无论是否首次访问）
+            welcomeScreen.style.display = 'flex';
+            welcomeScreen.style.opacity = '1';
+            
+            // 保留关闭按钮的逻辑
             closeButton.addEventListener('click', function() {
                 welcomeScreen.style.opacity = '0';
                 setTimeout(function() {
@@ -483,12 +489,15 @@
                 }, 300);
             });
             
-            // 如果用户直接刷新页面，不再显示欢迎界面
-            if (sessionStorage.getItem('visited')) {
-                welcomeScreen.style.display = 'none';
-            } else {
-                sessionStorage.setItem('visited', 'true');
-            }
+            // 点击欢迎界面背景也能关闭
+            welcomeScreen.addEventListener('click', function(e) {
+                if (e.target === welcomeScreen) {
+                    welcomeScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        welcomeScreen.style.display = 'none';
+                    }, 300);
+                }
+            });
         });
         
         // 主题切换
