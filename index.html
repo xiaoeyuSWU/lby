@@ -517,6 +517,7 @@
                     }, 300);
                 }
             });
+            
         });
         
         // 主题切换
@@ -533,6 +534,23 @@
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
             }
+        });
+
+        // 在DOM加载完成后添加以下代码
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('#项目经历 .card');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+                });
+            });
         });
         
         // 移动端菜单切换
