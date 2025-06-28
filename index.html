@@ -370,12 +370,15 @@
                 </button>
             </div>
             
-            <button id="mobile-menu-button" class="md:hidden text-xl">
-                <i class="fas fa-bars"></i>
-            </button>
-            <button id="mobile-search-button" class="md:hidden text-xl ml-4">
-                <i class="fas fa-search"></i> <!-- 原代码为 <i class="fas fa-long-arrow-alt-right"></i> -->
-            </button>
+            <!-- 移动端菜单和搜索按钮 -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-xl mr-4">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button id="mobile-search-button" class="text-xl">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </div>
         
         <!-- 移动端菜单 -->
