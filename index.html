@@ -153,10 +153,152 @@
             border-radius: 0.75rem;
         }
         
+        /* 搜索相关样式 */
+        .search-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .search-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .search-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--dark);
+            border-radius: 1rem;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .light-mode .search-container {
+            background-color: var(--light);
+        }
+        
+        .search-modal.active .search-container {
+            transform: scale(1);
+        }
+        
+        .search-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .light-mode .search-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--light);
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .light-mode .search-input {
+            color: var(--dark);
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .light-mode .search-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .search-close {
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .search-close:hover {
+            color: var(--primary);
+        }
+        
+        .search-results {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        
+        .search-result-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .light-mode .search-result-item {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-result-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .light-mode .search-result-item:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-result-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .search-result-content {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .light-mode .search-result-content {
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .search-no-results {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .light-mode .search-no-results {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .search-highlight {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+        }
+        
         @media (max-width: 768px) {
             .ai-chat-iframe {
                 height: 400px;
                 min-height: 350px;
+            }
+            
+            .search-results {
+                max-height: 50vh;
             }
         }
     </style>
@@ -180,6 +322,30 @@
         </div>
     </div>
     
+    <!-- 搜索模态框 -->
+    <div id="search-modal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    class="search-input" 
+                    placeholder="搜索内容..." 
+                    aria-label="搜索内容"
+                >
+                <div id="search-close" class="search-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="search-results" id="search-results">
+                <!-- 搜索结果将在这里动态生成 -->
+                <div class="search-no-results">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- 导航栏 -->
     <header class="fixed top-0 left-0 w-full py-4 px-6 z-40 glassmorphism">
         <div class="container mx-auto flex justify-between items-center">
@@ -199,10 +365,16 @@
                 <a href="#担任职务" class="link">担任职务</a>
                 <a href="#联系方式" class="link">联系方式</a>
                 <a href="#留言板" class="link">留言板</a>
+                <button id="desktop-search-button" class="text-xl">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </button>
             </div>
             
             <button id="mobile-menu-button" class="md:hidden text-xl">
                 <i class="fas fa-bars"></i>
+            </button>
+            <button id="mobile-search-button" class="md:hidden text-xl ml-4">
+                <i class="fas fa-long-arrow-alt-right"></i>
             </button>
         </div>
         
@@ -301,7 +473,7 @@
                     <ul class="space-y-3 list-disc pl-6">
                         <li>在这项比赛中，我们通过线性规划和多情景风险模拟，优化了乡村2024-2030年的农作物种植方案，最大化经济效益。我们结合数据分析与多种种植约束，提升了种植效率和利润，并通过鲁棒优化确保收益在不确定性下依然稳健。</li>
                         <li>技术上，我们创新性地设计了适宜性约束矩阵，并结合随机波动模型、Pearson相关性和双对数需求模型，深入分析市场动态，提升决策精准度。我们的模型不仅完美地解决了题目的问题，提升了效益，还展现了强大的抗风险能力，突显了我们的创新与技术实力。</li>
-                        <li>赛题地址：<a href="https://www.mcm.edu.cn/html_cn/node/a0c1fb5c31d43551f08cd8ad16870444.html" class="link" target="_blank">2024年高教社杯全国大学生数学建模竞赛赛题</a></li>
+                        <li>赛题地址：<a href="https://www.mcm.edu.cn/html_cn/node/a0c1fb5c31d43551f08cd8ad1687044.html" class="link" target="_blank">2024年高教社杯全国大学生数学建模竞赛赛题</a></li>
                     </ul>
                 </div>
                 
@@ -616,6 +788,140 @@
                     }
                 }
             });
+        });
+        
+        // 搜索功能
+        const searchModal = document.getElementById('search-modal');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const searchClose = document.getElementById('search-close');
+        const desktopSearchButton = document.getElementById('desktop-search-button');
+        const mobileSearchButton = document.getElementById('mobile-search-button');
+        
+        // 打开搜索模态框
+        function openSearchModal() {
+            searchModal.classList.add('active');
+            setTimeout(() => {
+                searchInput.focus();
+            }, 300);
+        }
+        
+        // 关闭搜索模态框
+        function closeSearchModal() {
+            searchModal.classList.remove('active');
+        }
+        
+        // 执行搜索
+        function performSearch() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            
+            if (!searchTerm) {
+                searchResults.innerHTML = `
+                    <div class="search-no-results">
+                        请输入关键词进行搜索
+                    </div>
+                `;
+                return;
+            }
+            
+            // 从页面中提取所有可搜索内容
+            const searchableElements = document.querySelectorAll('h2, h3, p, li');
+            const searchResultsArray = [];
+            
+            searchableElements.forEach(element => {
+                const text = element.textContent.toLowerCase();
+                
+                if (text.includes(searchTerm)) {
+                    // 获取元素所在的部分
+                    let section = element.closest('section');
+                    let sectionTitle = section ? section.querySelector('h2, h3')?.textContent || '未知部分' : '未知部分';
+                    
+                    // 获取元素的上下文
+                    let context = element.textContent;
+                    
+                    // 高亮匹配的关键词
+                    const highlightedContext = context.replace(
+                        new RegExp(searchTerm, 'gi'),
+                        match => `<span class="search-highlight">${match}</span>`
+                    );
+                    
+                    searchResultsArray.push({
+                        title: sectionTitle,
+                        content: highlightedContext,
+                        elementId: element.closest('section')?.id || null
+                    });
+                }
+            });
+            
+            // 显示搜索结果
+            if (searchResultsArray.length > 0) {
+                searchResults.innerHTML = '';
+                
+                searchResultsArray.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <div class="search-result-title">${result.title}</div>
+                        <div class="search-result-content" 
+                             data-section-id="${result.elementId}">
+                            ${result.content}
+                        </div>
+                    `;
+                    
+                    // 添加点击事件，跳转到对应部分
+                    resultItem.addEventListener('click', () => {
+                        if (result.elementId) {
+                            const targetElement = document.getElementById(result.elementId);
+                            
+                            if (targetElement) {
+                                window.scrollTo({
+                                    top: targetElement.offsetTop - 100,
+                                    behavior: 'smooth'
+                                });
+                                
+                                closeSearchModal();
+                            }
+                        }
+                    });
+                    
+                    searchResults.appendChild(resultItem);
+                });
+            } else {
+                searchResults.innerHTML = `
+                    <div class="search-no-results">
+                        没有找到与 "${searchTerm}" 相关的内容
+                    </div>
+                `;
+            }
+        }
+        
+        // 事件监听
+        desktopSearchButton.addEventListener('click', openSearchModal);
+        mobileSearchButton.addEventListener('click', openSearchModal);
+        searchClose.addEventListener('click', closeSearchModal);
+        
+        // 点击模态框背景关闭
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) {
+                closeSearchModal();
+            }
+        });
+        
+        // 输入框变化时执行搜索
+        searchInput.addEventListener('input', performSearch);
+        
+        // 输入框按回车键执行搜索
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // ESC键关闭搜索
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+                closeSearchModal();
+            }
         });
     </script>
 </body>
