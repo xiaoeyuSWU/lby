@@ -49,12 +49,6 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            transition: all 0.3s ease;
-        }
-        
-        .profile-photo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
         
         .section-title {
@@ -75,29 +69,10 @@
         }
         
         .card, .glassmorphism {
-            transition: all 0.3s ease;
             border-radius: 0.75rem;
             overflow: hidden;
             position: relative;
             z-index: 1;
-        }
-        
-        .card::before, .glassmorphism::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.1));
-            z-index: -1;
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover::before, .glassmorphism:hover::before {
-            transform: scaleY(1);
         }
         
         .btn-primary {
@@ -108,7 +83,6 @@
         
         .btn-primary:hover {
             background: #2563eb;
-            transform: translateY(-2px);
         }
         
         .progress-bar {
@@ -177,7 +151,6 @@
             min-height: 500px;
             border: none;
             border-radius: 0.75rem;
-            transition: all 0.3s ease;
         }
         
         @media (max-width: 768px) {
@@ -314,7 +287,7 @@
 
                     <div class="space-y-8">
                 <!-- 项目1 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">1、一篇SCI论文——关于自动驾驶车辆的轨迹预测（已发表）</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>以核心作者的身份与其他研究者共同发表了一篇SCI论文。此论文发表在SCI期刊：IEEE（电气与电子工程师协会）的<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" class="link" target="_blank">IEEE Transactions on Vehicular Technology</a>上，期刊影响因子=6.8。</li>
@@ -323,7 +296,7 @@
                 </div>
                 
                 <!-- 项目2 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">2、<a href="https://www.mcm.edu.cn/" class="link" target="_blank">全国大学生数学建模竞赛</a>：基于线性规划与多情景风险模拟的农作物最优种植方案研究(已获国奖)</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>在这项比赛中，我们通过线性规划和多情景风险模拟，优化了乡村2024-2030年的农作物种植方案，最大化经济效益。我们结合数据分析与多种种植约束，提升了种植效率和利润，并通过鲁棒优化确保收益在不确定性下依然稳健。</li>
@@ -333,7 +306,7 @@
                 </div>
                 
                 <!-- 项目3 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">3、基于DeepSeek API与本地模型部署的图形化聊天界面开发</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>通过调用DeepSeek官方提供的API接口，我设计并开发了一个通用的图形化界面，实现与DeepSeek模型的便捷交互，避免了因官网服务器高峰期而导致的使用延迟问题。</li>
@@ -344,7 +317,7 @@
                 </div>
                 
                 <!-- 项目4 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">4、Transformer教程</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>深入浅出地讲解了DeepSeek和ChatGPT背后的模型：Transformer。</li>
@@ -354,7 +327,7 @@
                 </div>
                 
                 <!-- 项目5 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">5、一个基于HTML和CSS和JavaScript的个人网站的设计与实现</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>你正在浏览的是一个展示我的个人信息、学术成就、项目经历和联系方式的在线个人作品集网站。</li>
@@ -366,7 +339,7 @@
                 </div>
                 
                 <!-- 项目6 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">6、一个基于pygame的定制化<a href="https://github.com/xiaoeyuSWU/snake" class="link" target="_blank">贪吃蛇小游戏</a></h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>在致敬经典贪吃蛇的精髓的基础上，我进行了一轮深度的创新迭代，融入了一系列个性化与创新性设计元素。</li>
@@ -378,7 +351,7 @@
                 </div>
                 
                 <!-- 项目7 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">7、GCCVerML：一个基于机器学习的GCC编译器版本识别问题</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>我通过研究不同版本的GCC C++编译器的编译结果差异，提炼出一组显著特征，并利用恰当的特征工程基于机器学习算法构建了一个判别函数。</li>
@@ -387,7 +360,7 @@
                 </div>
                 
                 <!-- 项目8 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">8、<a href="https://github.com/xiaoeyuSWU/TimeSeqTransformer_001" class="link" target="_blank">TimeSeqTransformer</a>：一个基于<a href="https://arxiv.org/abs/1706.03762" class="link" target="_blank">Transformer</a>进行时间序列数据预测的模型</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>我使用<a href="https://tushare.pro/" class="link" target="_blank">Tushare</a>的数据接口获取数据，进行模型的训练和完善。使用了滑动窗口的方法创建输入序列，并利用MinMaxScaler对每个序列进行归一化处理，确保数据在同一尺度上进行训练。</li>
@@ -397,7 +370,7 @@
                 </div>
                 
                 <!-- 项目9 -->
-                <div class="glassmorphism p-8 card" data-aos="fade-up">
+                <div class="glassmorphism p-8" data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4">9、<a href="https://github.com/xiaoeyuSWU/wechat_jump" class="link" target="_blank">WeChat Jump Game Automation Project</a>：一个基于自动化和计算机视觉的跳一跳游戏助手</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>本项目包含两个子项目，分别通过用户自行选择和计算机视觉的方式识别跳跃起终点，利用PyAutoGUI、OpenCV等技术自动计算距离并模拟跳跃，实现微信"跳一跳"游戏的自动化操作。</li>
@@ -572,23 +545,6 @@
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
             }
-        });
-
-        // 在DOM加载完成后添加以下代码
-        document.addEventListener('DOMContentLoaded', function() {
-            const projectCards = document.querySelectorAll('#项目经历 .card');
-            
-            projectCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px)';
-                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(-5px)';
-                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
-                });
-            });
         });
         
         // 移动端菜单切换
