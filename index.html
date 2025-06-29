@@ -847,7 +847,7 @@
                 if (text.includes(searchTerm)) {
                     // 获取元素所在的部分
                     let section = element.closest('section');
-                    let sectionTitle = section ? section.querySelector('h2, h3')?.textContent || '未知部分' : '未知部分';
+                    let sectionTitle = section ? section.querySelector('h2, h3')?.textContent || '其他部分' : '其他部分';
                     
                     // 获取元素的上下文
                     let context = element.textContent;
