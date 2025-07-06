@@ -239,6 +239,23 @@
         .search-close:hover {
             color: var(--primary);
         }
+
+        .search-close-btn {
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .search-close-btn:hover {
+            background: #2563eb;
+            transform: scale(1.1);
+        }
         
         .search-results {
             max-height: 60vh;
@@ -345,16 +362,16 @@
     <!-- 搜索模态框 -->
     <div id="search-modal" class="search-modal">
         <div class="search-container">
-            <div class="search-header">
+            <div class="search-header flex items-center justify-between p-4 border-b border-gray-700">
                 <input 
                     type="text" 
                     id="search-input" 
-                    class="search-input" 
+                    class="flex-1 bg-transparent border-none outline-none text-lg text-gray-200" 
                     placeholder="搜索内容..." 
                     aria-label="搜索内容"
                 >
-                <div id="search-close" class="search-close">
-                    <i class="fas fa-times"></i>
+                <div id="search-close" class="search-close-btn">
+                    <i class="fa fa-times"></i>
                 </div>
             </div>
             <div class="search-results" id="search-results">
