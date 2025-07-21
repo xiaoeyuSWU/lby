@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李博远@西南大学</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <!-- 替换为国内CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <meta name="baidu-site-verification" content="codeva-7pwOwW7CCw" />
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
@@ -356,11 +359,17 @@
             <p class="mb-6">喜欢您来^ ^您可以在这里了解我的个人背景和项目经历，还可以下载我的PDF简历 🍀</p>
             <p class="mb-6">网站包含AI对话功能，您可通过此模块，与了解我信息的AI交流 🤖</p>
             <p>感谢访问~ 😊</p>
-            <div class="text-center mt-6">
-                <button id="close-welcome" class="btn-primary px-6 py-2 rounded-full mt-6 font-medium">
+            <!-- 调整按钮容器的mt-6为mt-4 -->
+            <div class="text-center mt-4">
+                <button id="close-welcome" class="btn-primary px-6 py-2 rounded-full mt-4 font-medium">
                     我知道了，进入网站 🚀
                 </button>
             </div>
+            <!-- 新增隐私政策提示 -->
+            <p class="text-xs text-center mt-5 text-gray-400">
+                点击上方按钮即代表您已阅读并同意本网站的
+                <a href="https://liboyuan.com.cn/private" class="text-xs link" target="_blank">《隐私政策》</a>
+            </p>
         </div>
     </div>
     
@@ -466,7 +475,7 @@
                         <!-- 替换为国内CDN的Font Awesome图标 -->
                         <i class="fa fa-university"></i>
                     </a>
-                    <a href="https://thinking.liboyuan.site/" class="text-2xl hover:text-blue-400 transition-colors" target="_blank">
+                    <a href="https://liboyuan.com.cn/thinking/" class="text-2xl hover:text-blue-400 transition-colors" target="_blank">
                         <!-- 替换为国内CDN的Font Awesome图标 -->
                         <i class="fa fa-book"></i>
                     </a>
@@ -486,7 +495,7 @@
                     <p>在科研方面，我以核心作者的身份与其他研究者共同发表过一篇SCI论文，此论文刊登在SCI顶刊<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" class="link" target="_blank">IEEE Transactions on Vehicular Technology</a>上。</p>
                     <p>我还广泛地参加过一些竞赛和项目。例如，我参加了教育部高教司等主办的<a href="https://www.mcm.edu.cn/" class="link" target="_blank">全国大学生数学建模竞赛</a>，并且获得了竞赛的国奖，国奖获奖比例约为全国作品的前2.4%左右。并且主持了一项大学生创新训练计划项目。</p>
                     <p>我具备自驱力和长期主义，也具有独立思考的习惯。我不仅会在自己感兴趣的研究领域（如<a href="http://gcjsxy.swu.edu.cn/info/1054/1707.htm" class="link" target="_blank">电气工程</a>、云计算、<a href="https://baike.baidu.com/item/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/3729729" class="link" target="_blank">深度学习</a>等）不断提升自己的知识和技能，还会致力于在课本之外通过实践不断提升自己的综合素质^ ^</p>
-                    <p>如果您想了解除了成绩、经历和各种项目之外的更加生动和立体的我，包括我的日常生活、兴趣爱好、思考方式、我所关注的领域以及我对问题的见解等等，请访问<a href="https://thinking.liboyuan.site/" class="link" target="_blank">MindLog | SambyLi</a>。这也是我用来记录自己成长的网站，建站是为了自用，是我最宝贵的数字资源之一。</p>
+                    <p>如果您想了解除了成绩、经历和各种项目之外的更加生动和立体的我，包括我的日常生活、兴趣爱好、思考方式、我所关注的领域以及我对问题的见解等等，请访问<a href="https://liboyuan.com.cn/thinking" class="link" target="_blank">MindLog | SambyLi</a>。这也是我用来记录自己成长的网站，建站之初是为了自用。</p>
                 </div>
             </div>
         </section>
@@ -498,7 +507,7 @@
                 <p class="mb-6">这是一个基于自然语言处理技术的AI对话助手，您可以通过它了解我的信息。<br>内容由AI生成，仅供参考。PS：电脑端浏览可获更佳体验哦。</p>
                 <div class="ai-chat-container">
                     <iframe
-                        src="https://deepseek.liboyuan.site"
+                        src="https://liboyuan.com.cn/deepseek"
                         style="width: 100%; height: 100%; min-height: 700px"
                         frameborder="0"
                         allow="microphone">
@@ -523,7 +532,7 @@
                 </div>
                 
                 <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">2、<a href="https://www.mcm.edu.cn/" class="link" target="_blank">全国大学生数学建模竞赛</a>：基于线性规划与多情景风险模拟的农作物最优种植方案研究（已获国奖）</h3>
+                    <h3 class="text-xl font-bold mb-4">2、一个竞赛国奖——<a href="https://www.mcm.edu.cn/" class="link" target="_blank">全国大学生数学建模竞赛</a>：基于线性规划与多情景风险模拟的农作物最优种植方案研究</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>在这项比赛中，我们通过线性规划和多情景风险模拟，优化了乡村2024-2030年的农作物种植方案，最大化经济效益。我们结合数据分析与多种种植约束，提升了种植效率和利润，并通过鲁棒优化确保收益在不确定性下依然稳健。</li>
                         <li>技术上，我们创新性地设计了适宜性约束矩阵，并结合随机波动模型、Pearson相关性和双对数需求模型，深入分析市场动态，提升决策精准度。我们的模型不仅完美地解决了题目的问题，提升了效益，还展现了强大的抗风险能力，突显了我们的创新与技术实力。</li>
@@ -532,14 +541,14 @@
                 </div>
 
                 <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">3、<a href="https://thinking.liboyuan.site/" class="link" target="_blank">MindLog</a>：一个记录生活和成长的个人博客网站</h3>
+                    <h3 class="text-xl font-bold mb-4">3、<a href="https://liboyuan.com.cn/thinking/" class="link" target="_blank">MindLog</a>：一个记录生活和成长的个人博客网站</h3>
                     <ul class="space-y-3 list-disc pl-6">
-                        <li>这是一个记录生活感悟、学习心得和个人思考的博客网站，旨在通过文字记录自己的大学生活。</li>
+                        <li>这是一个由我独立设计、研发的记录生活感悟、学习心得和个人思考的博客网站，旨在通过文字记录自己的大学生活。</li>
                         <li>采用HTML5、CSS3和原生JavaScript开发，集成Tailwind CSS框架实现现代化UI设计，包含响应式布局以适配桌面、平板和移动设备。</li>
                         <li>实现了分类筛选功能，支持按AI、爱好、大事记等不同类别浏览内容，配合骨架屏加载和滚动加载机制提升用户体验。</li>
                         <li>加入了模态框详情展示、搜索功能、移动端菜单适配等交互功能，以及平滑滚动、卡片悬停动画等微交互效果。</li>
                         <li class="mt-4">
-                            <a href="https://thinking.liboyuan.site/" 
+                            <a href="https://liboyuan.com.cn/thinking/" 
                             target="_blank" 
                             class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
                                 访问这个网站
@@ -564,15 +573,35 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="glassmorphism p-8" data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-4">5、一个基于HTML、CSS与JavaScript的个人网站的设计与实现</h3>
+                    <ul class="space-y-3 list-disc pl-6">
+                        <li>是的，就是你正在浏览的这个网站。它是我的第一款“产品”，旨在提供一个简洁、直观且具有互动性的页面，使访问者（比如你）能够方便地浏览和了解我的背景和成就。</li>
+                        <li>导航栏采用 "<a href="https://www.woshipm.com/pd/5482371.html" class="link" target="_blank">场景化分类</a>" 而非传统 "功能分类"，将 "AI 对话"" 留言板 " 等交互模块与静态信息并列。</li>
+                        <li>通过欢迎弹窗主动传递网站核心价值（"了解背景"），并附带<a href="https://liboyuan.com.cn/private/" class="link" target="_blank">隐私政策</a>链接，兼顾体验与合规。点击页面触发随机爱心动画，为专业展示类网站注入温度，通过微交互尝试增强情感连接。</li>
+                        <li>支持全站内容检索并高亮匹配结果，结合锚点跳转功能，解决长页面信息查找效率问题。</li>
+                        <li>将静态简历转化为交互式问答，通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/iframe" class="link" target="_blank">iframe</a> 嵌入专属训练的 AI 助手，解决传统个人网站 "单向展示" 的局限性。匿名留言板降低用户表达门槛，同时设置引导性文案，完善用户体验。</li>
+                        <li>内置用户行为采集模块（记录用户点击、停留时间等），为后续迭代提供数据支撑。</li>
+
+                        <li class="mt-4">
+                            <a href="https://github.com/xiaoeyuSWU/lby/tree/main" 
+                            target="_blank" 
+                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                Github开源地址
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                                 
                 
                 <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">5、Transformer教程</h3>
+                    <h3 class="text-xl font-bold mb-4">6、Transformer教程</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>深入浅出地讲解了DeepSeek和ChatGPT背后的模型：Transformer。</li>
                         <li>通过最简明、最生动和最通俗的语言，辅以图片，使得每个人，哪怕只是高中生，都能轻松理解这个复杂的概念。</li>
                         <li class="mt-4">
-                            <a href="https://trans.liboyuan.site/" 
+                            <a href="https://liboyuan.com.cn/trans/" 
                             target="_blank" 
                             class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
                                 访问这个教程
@@ -582,29 +611,12 @@
                 </div>
 
                 <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">6、LLMs的本地模型部署与基于API的图形化界面开发</h3>
+                    <h3 class="text-xl font-bold mb-4">7、LLMs的本地模型部署与基于API的图形化界面开发</h3>
                     <ul class="space-y-3 list-disc pl-6">
                         <li>借助GPU加速技术与图形化平台，将LLMs本地部署至个人计算机中，显著提高了响应速度和数据安全，实现了离线状态下的模型推理。</li>
                         <li>此外，我通过调用LLMs官方提供的API接口，我设计并开发了一个通用的图形化界面，实现与模型的便捷交互。</li>
                         <li>界面友好、操作简单，适合日常问答、代码生成等多种场景使用，并支持快速调用多个模型进行对比测试。</li>
                         <li>该项目不仅提升了我对大语言模型的应用理解，也加深了我对API集成、本地部署和界面设计的综合实践能力。</li>
-                    </ul>
-                </div>
-                
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">7、一个基于HTML和CSS和JavaScript的个人网站的设计与实现</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>你正在浏览的是一个展示我的个人信息、学术成就、项目经历和联系方式的在线个人作品集网站。</li>
-                        <li>这个网站旨在提供一个简洁、直观且具有互动性的页面，使访问者（比如你）能够方便地浏览和了解我的背景和成就。</li>
-                        <li>网站采用HTML和CSS设计，实现了响应式布局，确保在不同设备（桌面、平板和手机）上都有良好的用户体验。</li>
-                        <li>使用@media查询对不同屏幕宽度进行优化，确保导航菜单和内容显示的适配性。使用JavaScript动态修改页面的背景颜色、文字颜色和其他样式属性。</li>
-                        <li class="mt-4">
-                            <a href="https://github.com/xiaoeyuSWU/lby/tree/main" 
-                            target="_blank" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                                Github开源地址
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 
@@ -822,6 +834,10 @@
             
             // 保留关闭按钮的逻辑
             closeButton.addEventListener('click', function() {
+                // 发射五彩纸屑
+                launchConfettiFromButton();
+                
+                // 隐藏欢迎界面
                 welcomeScreen.style.opacity = '0';
                 setTimeout(function() {
                     welcomeScreen.style.display = 'none';
@@ -1059,6 +1075,80 @@
                 closeSearchModal();
             }
         });
+
+        // 新增（2025-07-20T12:02）
+        // 收集用户信息并发送到服务器
+        document.addEventListener('DOMContentLoaded', () => {
+        // ① 采集基本信息
+        const userInfo = {
+            startTime: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer,
+            interactions: []
+        };
+
+        // ② 记录点击等交互
+        document.addEventListener('click', event => {
+            userInfo.interactions.push({
+            time: new Date().toISOString(),
+            type: 'click',
+            target: event.target.tagName,
+            text: (event.target.innerText || '').slice(0, 50)
+            });
+        });
+
+        // ③ 统一发送函数
+        function flush() {
+            userInfo.endTime = new Date().toISOString();   // 更新离开时间
+            const payload = JSON.stringify(userInfo);
+
+            // 首选 sendBeacon；若不支持或失败则用 fetch keepalive
+            if (!navigator.sendBeacon || !navigator.sendBeacon('/collect.php', payload)) {
+            fetch('/collect.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+                body: payload,
+                keepalive: true        // 关键：允许在 pagehide 后继续传输
+            });
+            }
+        }
+
+        // ④ 在标签页进入后台或将被卸载时发送
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') flush();
+        });
+
+        // ⑤ pagehide 是 iOS Safari 的兜底（once: true 保证只触发一次）
+        window.addEventListener('pagehide', flush, { once: true });
+        });
+
+        function launchConfettiFromButton() {
+            // 获取按钮元素
+            const button = document.getElementById('close-welcome');
+            if (!button) return;
+            
+            // 获取按钮位置
+            const rect = button.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            // 计算相对于视口的坐标
+            const viewportX = x / window.innerWidth;
+            const viewportY = y / window.innerHeight;
+            
+            // 配置五彩纸屑参数
+            confetti({
+                particleCount: 150,
+                spread: 120,
+                origin: { 
+                    x: viewportX, 
+                    y: viewportY 
+                },
+                scalar: 1.5,
+                startVelocity: 45,
+            });
+        }
+
     </script>
 </body>
 </html>
