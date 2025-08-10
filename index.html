@@ -11,346 +11,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
-        
-        :root {
-            --primary: #3b82f6;
-            --primary-light: #93c5fd;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-        
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            transition: all 0.3s ease;
-            line-height: 1.6;
-        }
-        
-        body.light-mode {
-            background-color: var(--light);
-            color: var(--dark);
-            --glass-bg: rgba(248, 250, 252, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.1);
-        }
-        
-        .glassmorphism {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .glassmorphism:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-        
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .section-title {
-            position: relative;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 3px;
-        }
-        
-        .card, .glassmorphism {
-            border-radius: 0.75rem;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background: #2563eb;
-        }
-        
-        .progress-bar {
-            height: 6px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .heart-animation {
-            position: fixed;
-            pointer-events: none;
-            animation: float 4s ease-out forwards;
-            font-size: 24px;
-            z-index: 9999;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
-        }
-        
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .mobile-menu.active {
-            max-height: 500px;
-        }
-        
-        .link {
-            color: var(--primary-light);
-            transition: all 0.2s ease;
-            position: relative;
-        }
-        
-        .link:hover {
-            color: var(--primary);
-        }
-        
-        .link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .link:hover::after {
-            width: 100%;
-        }
-        
-        .ai-chat-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-        
-        .ai-chat-iframe {
-            width: 100%;
-            height: 600px;
-            min-height: 500px;
-            border: none;
-            border-radius: 0.75rem;
-        }
-        
-        /* 搜索相关样式 */
-        .search-modal {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 50;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .search-modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .search-container {
-            width: 90%;
-            max-width: 800px;
-            background-color: var(--dark);
-            border-radius: 1rem;
-            overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        
-        .light-mode .search-container {
-            background-color: var(--light);
-        }
-        
-        .search-modal.active .search-container {
-            transform: scale(1);
-        }
-        
-        .search-header {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .light-mode .search-header {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--light);
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-        }
-        
-        .light-mode .search-input {
-            color: var(--dark);
-        }
-        
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .light-mode .search-input::placeholder {
-            color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .search-results {
-            max-height: 60vh;
-            overflow-y: auto;
-            padding: 1rem;
-        }
-        
-        .search-result-item {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .light-mode .search-result-item {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        
-        .search-result-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .light-mode .search-result-item:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-result-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .search-result-content {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .light-mode .search-result-content {
-            color: rgba(0, 0, 0, 0.8);
-        }
-        
-        .search-no-results {
-            text-align: center;
-            padding: 2rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .light-mode .search-no-results {
-            color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .search-highlight {
-            background-color: yellow;
-            color: black;
-            font-weight: bold;
-        }
-        
-        @media (max-width: 768px) {
-            .ai-chat-iframe {
-                height: 400px;
-                min-height: 350px;
-            }
-            
-            .search-results {
-                max-height: 50vh;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            /* 添加的导航栏调整样式 */
-            header {
-                padding-top: 0.3rem; /* 更小的内边距 */
-                padding-bottom: 0.3rem;
-            }
-            header h1 {
-                font-size: 0.9rem; /* 更小的字体 */
-            }
-            #mobile-menu {
-                margin-top: 0.3rem; /* 更小的间距 */
-            }
-            main {
-                padding-top: 4.5rem; /* 更小的顶部间距 */
-            }
-
-        }
-        
-        @media (max-width: 480px) {
-            .glassmorphism {
-                padding: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-
-            /* 在480px以下进一步调整导航栏 */
-            header {
-                padding-top: 0.3rem; /* 更小的内边距 */
-                padding-bottom: 0.3rem;
-            }
-            header h1 {
-                font-size: 0.9rem; /* 更小的字体 */
-            }
-            #mobile-menu {
-                margin-top: 0.3rem; /* 更小的间距 */
-            }
-            main {
-                padding-top: 4.5rem; /* 更小的顶部间距 */
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="progress-bar" class="progress-bar fixed top-0 left-0 z-50"></div>
-    
+
     <!-- 欢迎界面 -->
     <div id="welcome-screen" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 transition-opacity duration-300">
         <div class="glassmorphism p-8 max-w-md mx-4 text-left">
@@ -371,7 +36,7 @@
             </p>
         </div>
     </div>
-    
+
     <!-- 搜索模态框 -->
     <div id="search-modal" class="search-modal">
         <div class="search-container">
@@ -383,7 +48,6 @@
                     placeholder="搜索内容..." 
                     aria-label="搜索内容"
                 >
-
             </div>
             <div class="search-results" id="search-results">
                 <!-- 搜索结果将在这里动态生成 -->
@@ -393,7 +57,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- 导航栏 -->
     <header class="fixed top-0 left-0 w-full py-4 px-6 z-40 glassmorphism">
         <div class="container mx-auto flex justify-between items-center">
@@ -404,7 +68,7 @@
                 </div>
                 <h1 class="text-xl font-bold">李博远@西南大学</h1>
             </div>
-            
+
             <div class="hidden md:flex space-x-6">
                 <a href="#个人简介" class="link">个人简介</a>
                 <a href="#AI对话" class="link">AI对话</a>
@@ -415,11 +79,11 @@
                 <a href="#联系方式" class="link">联系方式</a>
                 <a href="#留言板" class="link">留言板</a>
                 <button id="desktop-search-button" class="text-xl flex items-center align-middle">
-                <!-- 替换为国内CDN的Font Awesome图标 -->
-                <i class="fa fa-search"></i> 
+                    <!-- 替换为国内CDN的Font Awesome图标 -->
+                    <i class="fa fa-search"></i>
                 </button>
             </div>
-            
+
             <!-- 移动端菜单和搜索按钮 -->
             <div class="md:hidden flex items-center">
                 <button id="mobile-menu-button" class="text-xl mr-4">
@@ -432,7 +96,7 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- 移动端菜单 -->
         <div id="mobile-menu" class="mobile-menu md:hidden mt-4">
             <div class="flex flex-col space-y-2 py-4">
@@ -447,7 +111,7 @@
             </div>
         </div>
     </header>
-    
+
     <main class="container mx-auto px-4 pt-24 pb-16">
         <!-- 个人简介部分 -->
         <section id="个人简介" class="mb-20">
@@ -460,32 +124,32 @@
                 <p class="text-lg mb-4">
                     <a href="http://gcjsxy.swu.edu.cn/info/1054/1707.htm" class="link" target="_blank">电气工程及其自动化</a>
                 </p>
-                
+
                 <div class="flex justify-center space-x-4 mb-4">
+                    <a href="https://liboyuan.com.cn/piping" class="text-2xl hover:text-blue-400 transition-colors" target="_blank">
+                        <i class="fa fa-commenting"></i> <!-- 评论图标更贴合批评建议主题 -->
+                    </a>
                     <a href="mailto:1920295921@qq.com" class="text-2xl hover:text-blue-400 transition-colors">
                         <!-- 替换为国内CDN的Font Awesome图标 -->
                         <i class="fa fa-envelope-o"></i>
                     </a>
-                    <a href="https://github.com/xiaoeyuSWU" class="text-2xl hover:text-blue-400 transition-colors">
+                    <a href="https://github.com/xiaoeyuSWU" class="text-2xl hover:text-blue-400 transition-colors" target="_blank">
                         <!-- 替换为国内CDN的Font Awesome图标 -->
                         <i class="fa fa-github"></i>
-                    </a>
-                    <a href="https://ieeexplore.ieee.org/Xplore/home.jsp" class="text-2xl hover:text-blue-400 transition-colors" target="_blank">
-                        <!-- 替换为国内CDN的Font Awesome图标 -->
-                        <i class="fa fa-university"></i>
                     </a>
                     <a href="https://liboyuan.com.cn/thinking/" class="text-2xl hover:text-blue-400 transition-colors" target="_blank">
                         <!-- 替换为国内CDN的Font Awesome图标 -->
                         <i class="fa fa-book"></i>
                     </a>
                 </div>
-                
+
                 <a href="resume.pdf" download="李博远_简历.pdf" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
                     <!-- 替换为国内CDN的Font Awesome图标 -->
-                    <i class="fa fa-download mr-2"></i> 下载我的简历
+                    <i class="fa fa-download mr-2"></i>
+                    下载我的简历
                 </a>
             </div>
-            
+
             <div class="glassmorphism p-8">
                 <h3 class="section-title text-2xl font-bold">个人简介</h3>
                 <div class="space-y-4">
@@ -498,293 +162,437 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- AI对话部分 -->
         <section id="AI对话" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
                 <h3 class="section-title text-2xl font-bold mb-4">AI对话</h3>
                 <p class="mb-6">这是一个基于自然语言处理技术的AI对话助手，您可以通过它了解我的信息。<br>内容由AI生成，仅供参考。PS：电脑端浏览可获更佳体验哦。</p>
                 <div class="ai-chat-container">
-                    <iframe
-                        src="https://liboyuan.com.cn/deepseek"
-                        style="width: 100%; height: 100%; min-height: 700px"
-                        frameborder="0"
-                        allow="microphone">
+                    <iframe src="https://liboyuan.com.cn/deepseek" style="width: 100%; height: 100%; min-height: 700px" frameborder="0" allow="microphone">
                     </iframe>
                 </div>
             </div>
         </section>
-        
+
         <!-- 项目经历部分 -->
         <section id="项目经历" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="section-title text-2xl font-bold mb-6">项目经历</h3>
+                <h3 class="section-title text-2xl font-bold mb-6">项目经历</h3>
 
-                    <div class="space-y-8">
-                 
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">1、一篇SCI论文——关于自动驾驶车辆的轨迹预测（已发表）</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>以核心作者的身份与其他研究者共同发表了一篇SCI论文。此论文发表在SCI期刊：IEEE（电气与电子工程师协会）的<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" class="link" target="_blank">IEEE Transactions on Vehicular Technology</a>上，期刊影响因子=6.8。</li>
-                        <li>本文提出了一种基于DTDGP-IE和风险指数图的贪心轨迹预测方法，通过贪心道路网格搜索进行意图估计，并利用风险指数图关注高风险车辆以提升预测精度。实验对比LSTM和GRU方法，结果表明该方法在相同计算成本下具备更优的预测性能和计算效率，验证了其有效性。</li>
-                    </ul>
-                </div>
-                
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">2、一个竞赛国奖——<a href="https://www.mcm.edu.cn/" class="link" target="_blank">全国大学生数学建模竞赛</a>：基于线性规划与多情景风险模拟的农作物最优种植方案研究</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>在这项比赛中，我们通过线性规划和多情景风险模拟，优化了乡村2024-2030年的农作物种植方案，最大化经济效益。我们结合数据分析与多种种植约束，提升了种植效率和利润，并通过鲁棒优化确保收益在不确定性下依然稳健。</li>
-                        <li>技术上，我们创新性地设计了适宜性约束矩阵，并结合随机波动模型、Pearson相关性和双对数需求模型，深入分析市场动态，提升决策精准度。我们的模型不仅完美地解决了题目的问题，提升了效益，还展现了强大的抗风险能力，突显了我们的创新与技术实力。</li>
-                        <li>赛题地址：<a href="https://www.mcm.edu.cn/html_cn/node/a0c1fb5c31d43551f08cd8ad1687044.html" class="link" target="_blank">2024年高教社杯全国大学生数学建模竞赛赛题</a></li>
-                    </ul>
-                </div>
+                <div class="space-y-8">
 
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">3、<a href="https://liboyuan.com.cn/thinking/" class="link" target="_blank">MindLog</a>：一个记录生活和成长的个人博客网站</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>这是一个由我独立设计、研发的记录生活感悟、学习心得和个人思考的博客网站，旨在通过文字记录自己的大学生活。</li>
-                        <li>采用HTML5、CSS3和原生JavaScript开发，集成Tailwind CSS框架实现现代化UI设计，包含响应式布局以适配桌面、平板和移动设备。</li>
-                        <li>实现了分类筛选功能，支持按AI、爱好、大事记等不同类别浏览内容，配合骨架屏加载和滚动加载机制提升用户体验。</li>
-                        <li>加入了模态框详情展示、搜索功能、移动端菜单适配等交互功能，以及平滑滚动、卡片悬停动画等微交互效果。</li>
-                        <li class="mt-4">
-                            <a href="https://liboyuan.com.cn/thinking/" 
-                            target="_blank" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                                访问这个网站
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">1、一篇SCI论文——关于自动驾驶车辆的轨迹预测（已发表）</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>以核心作者的身份与其他研究者共同发表了一篇SCI论文。此论文发表在SCI期刊：IEEE（电气与电子工程师协会）的<a href="https://ieeexplore.ieee.org/xpl/issues?isnumber=10230043&punumber=25" class="link" target="_blank">IEEE Transactions on Vehicular Technology</a>上，期刊影响因子=6.8。</li>
+                            <li>本文提出了一种基于DTDGP-IE和风险指数图的贪心轨迹预测方法，通过贪心道路网格搜索进行意图估计，并利用风险指数图关注高风险车辆以提升预测精度。实验对比LSTM和GRU方法，结果表明该方法在相同计算成本下具备更优的预测性能和计算效率，验证了其有效性。</li>
+                        </ul>
+                    </div>
 
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">4、主持一项全国大学生创新训练项目（大创）</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>主持了一项全国大学生创新训练项目———一个基于YOLO和DeepSeek的作物生长智能诊断系统。本项目立足智慧农业发展需求，开发了一套融合计算机视觉与大语言模型的作物生长智能诊断系统，旨在提高农业生产管理效率和作物质量，已获得重点支持和项目立项。</li>
-                        <li>系统创新性地结合<a href="https://github.com/Pertical/YOLOv8/blob/main/README.zh-CN.md" class="link" target="_blank">YOLOv8</a>框架与GhostNet轻量化结构，实现番茄叶片病虫害的实时检测，检测准确率较传统方法提升32%，满足田间复杂环境下的应用需求。</li>
-                        <li>通过农业数据对DeepSeek模型进行微调，构建智能问答与诊断模块，能够基于环境参数（温湿度、土壤pH值等）提供精准的作物养护建议和病虫害预警。</li>
-                        <li>我为项目负责人。项目成员均履历优秀，均曾获得国家奖学金或校级奖学金，曾参加多项竞赛并获奖。此项目还参加了中国国际大学生创新大赛并获奖。</li>
-                        <li class="mt-4">
-                            <a href="国创_智耘慧眼.pdf" 
-                            download="国创_智耘慧眼.pdf" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                               下载本项目介绍性PDF
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">2、一个竞赛国奖——<a href="https://www.mcm.edu.cn/" class="link" target="_blank">全国大学生数学建模竞赛</a>：基于线性规划与多情景风险模拟的农作物最优种植方案研究</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>在这项比赛中，我们通过线性规划和多情景风险模拟，优化了乡村2024-2030年的农作物种植方案，最大化经济效益。我们结合数据分析与多种种植约束，提升了种植效率和利润，并通过鲁棒优化确保收益在不确定性下依然稳健。</li>
+                            <li>技术上，我们创新性地设计了适宜性约束矩阵，并结合随机波动模型、Pearson相关性和双对数需求模型，深入分析市场动态，提升决策精准度。我们的模型不仅完美地解决了题目的问题，提升了效益，还展现了强大的抗风险能力，突显了我们的创新与技术实力。</li>
+                            <li>赛题地址：<a href="https://www.mcm.edu.cn/html_cn/node/a0c1fb5c31d43551f08cd8ad1687044.html" class="link" target="_blank">2024年高教社杯全国大学生数学建模竞赛赛题</a></li>
+                        </ul>
+                    </div>
 
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">5、一个基于HTML、CSS与JavaScript的个人网站的设计与实现</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>是的，就是你正在浏览的这个网站。它是我的第一款“产品”，旨在提供一个简洁、直观且具有互动性的页面，使访问者（比如你）能够方便地浏览和了解我的背景和成就。</li>
-                        <li>导航栏采用 "<a href="https://www.woshipm.com/pd/5482371.html" class="link" target="_blank">场景化分类</a>" 而非传统 "功能分类"，将 "AI 对话"" 留言板 " 等交互模块与静态信息并列。</li>
-                        <li>通过欢迎弹窗主动传递网站核心价值（"了解背景"），并附带<a href="https://liboyuan.com.cn/private/" class="link" target="_blank">隐私政策</a>链接，兼顾体验与合规。点击页面触发随机爱心动画，为专业展示类网站注入温度，通过微交互尝试增强情感连接。</li>
-                        <li>支持全站内容检索并高亮匹配结果，结合锚点跳转功能，解决长页面信息查找效率问题。</li>
-                        <li>将静态简历转化为交互式问答，通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/iframe" class="link" target="_blank">iframe</a> 嵌入专属训练的 AI 助手，解决传统个人网站 "单向展示" 的局限性。匿名留言板降低用户表达门槛，同时设置引导性文案，完善用户体验。</li>
-                        <li>内置用户行为采集模块（记录用户点击、停留时间等），为后续迭代提供数据支撑。</li>
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">3、<a href="https://liboyuan.com.cn/thinking/" class="link" target="_blank">MindLog</a>：一个记录生活和成长的个人博客网站</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>这是一个由我独立设计、研发的记录生活感悟、学习心得和个人思考的博客网站，旨在通过文字记录自己的大学生活。</li>
+                            <li>采用HTML5、CSS3和原生JavaScript开发，集成Tailwind CSS框架实现现代化UI设计，包含响应式布局以适配桌面、平板和移动设备。</li>
+                            <li>实现了分类筛选功能，支持按AI、爱好、大事记等不同类别浏览内容，配合骨架屏加载和滚动加载机制提升用户体验。</li>
+                            <li>加入了模态框详情展示、搜索功能、移动端菜单适配等交互功能，以及平滑滚动、卡片悬停动画等微交互效果。</li>
+                            <li class="mt-4">
+                                <a href="https://liboyuan.com.cn/thinking/" 
+                                   target="_blank" 
+                                   class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                    访问这个网站
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-                        <li class="mt-4">
-                            <a href="https://github.com/xiaoeyuSWU/lby/tree/main" 
-                            target="_blank" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                                Github开源地址
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                                
-                
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">6、Transformer教程</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>深入浅出地讲解了DeepSeek和ChatGPT背后的模型：Transformer。</li>
-                        <li>通过最简明、最生动和最通俗的语言，辅以图片，使得每个人，哪怕只是高中生，都能轻松理解这个复杂的概念。</li>
-                        <li class="mt-4">
-                            <a href="https://liboyuan.com.cn/trans/" 
-                            target="_blank" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                                访问这个教程
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">4、主持一项全国大学生创新训练项目（大创）</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>主持了一项全国大学生创新训练项目———一个基于YOLO和DeepSeek的作物生长智能诊断系统。本项目立足智慧农业发展需求，开发了一套融合计算机视觉与大语言模型的作物生长智能诊断系统，旨在提高农业生产管理效率和作物质量，已获得重点支持和项目立项。</li>
+                            <li>系统创新性地结合<a href="https://github.com/Pertical/YOLOv8/blob/main/README.zh-CN.md" class="link" target="_blank">YOLOv8</a>框架与GhostNet轻量化结构，实现番茄叶片病虫害的实时检测，检测准确率较传统方法提升32%，满足田间复杂环境下的应用需求。</li>
+                            <li>通过农业数据对DeepSeek模型进行微调，构建智能问答与诊断模块，能够基于环境参数（温湿度、土壤pH值等）提供精准的作物养护建议和病虫害预警。</li>
+                            <li>我为项目负责人。项目成员均履历优秀，均曾获得国家奖学金或校级奖学金，曾参加多项竞赛并获奖。此项目还参加了中国国际大学生创新大赛并获奖。</li>
+                            <li class="mt-4">
+                                <a href="国创_智耘慧眼.pdf" 
+                                   download="国创_智耘慧眼.pdf" 
+                                   class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                    下载本项目介绍性PDF
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">7、LLMs的本地模型部署与基于API的图形化界面开发</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>借助GPU加速技术与图形化平台，将LLMs本地部署至个人计算机中，显著提高了响应速度和数据安全，实现了离线状态下的模型推理。</li>
-                        <li>此外，我通过调用LLMs官方提供的API接口，我设计并开发了一个通用的图形化界面，实现与模型的便捷交互。</li>
-                        <li>界面友好、操作简单，适合日常问答、代码生成等多种场景使用，并支持快速调用多个模型进行对比测试。</li>
-                        <li>该项目不仅提升了我对大语言模型的应用理解，也加深了我对API集成、本地部署和界面设计的综合实践能力。</li>
-                    </ul>
-                </div>
-                
-                
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">8、GCCVerML：一个基于机器学习的GCC编译器版本识别问题</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>我通过研究不同版本的GCC C++编译器的编译结果差异，提炼出一组显著特征，并利用恰当的特征工程基于机器学习算法构建了一个判别函数。</li>
-                        <li>在实际操作中，我使用了多组C++源代码对不同版本的编译器进行测试，系统性地分析和验证了判别函数的有效性。通过不断优化，该判别函数在不同代码场景下展现出了更强的泛化能力，准确率达90%，显著提升了其性能和可靠性。</li>
-                    </ul>
-                </div>
-                
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">9、<a href="https://github.com/xiaoeyuSWU/TimeSeqTransformer_001" class="link" target="_blank">TimeSeqTransformer</a>：一个基于<a href="https://arxiv.org/abs/1706.03762" class="link" target="_blank">Transformer</a>进行时间序列数据预测的模型</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>我使用<a href="https://tushare.pro/" class="link" target="_blank">Tushare</a>的数据接口获取数据，进行模型的训练和完善。使用了滑动窗口的方法创建输入序列，并利用MinMaxScaler对每个序列进行归一化处理，确保数据在同一尺度上进行训练。</li>
-                        <li>项目采用了Transformer的编码器结构，结合<a href="https://developer.baidu.com/article/detail.html?id=2739596" class="link" target="_blank">位置编码</a>，用于处理时间序列数据，并在最后通过全连接层进行分类。通过实验调整模型的多个超参数，包括输入维度、隐藏层大小、编码层数、注意力头数、学习率、批次大小和训练轮数等。</li>
-                        <li class="mt-4">
-                            <a href="https://github.com/xiaoeyuSWU/TimeSeqTransformer_001" 
-                            target="_blank" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                                Github开源地址
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="glassmorphism p-8" data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">10、<a href="https://github.com/xiaoeyuSWU/wechat_jump" class="link" target="_blank">JumpAuto</a>：一个基于自动化脚本和计算机视觉的跳一跳游戏助手</h3>
-                    <ul class="space-y-3 list-disc pl-6">
-                        <li>本项目包含两个子项目，分别通过用户自行选择位置和计算机视觉的方式识别跳跃起终点，利用PyAutoGUI、OpenCV等技术自动计算距离并模拟跳跃，实现微信"跳一跳"游戏的自动化操作。</li>
-                        <li>第一个子项目基于手动选择起点和终点位置，通过PyAutoGUI捕捉坐标，利用计算出的距离和按压时间触发模拟跳跃，为简单的游戏自动化提供了一种高效的实现方法。</li>
-                        <li>第二个子项目采用计算机视觉技术，自动识别玩家和目标位置，动态加载模板图片并通过模板匹配确定坐标，并根据距离模拟点击。该项目具备模板动态匹配和可视化功能，提升了操作精度和自动化智能性。</li>
-                        <li>项目采用了模板匹配、动态区域划分等技术，确保在不同屏幕分辨率下准确识别玩家与目标，同时具有可视化反馈功能，实时展示识别结果，便于调试和观察。</li>
-                        <li>项目支持长时间稳定运行，通过休息间隔策略防止频繁操作，并且可根据未来需求进一步扩展数据集和算法优化。</li>
-                        <li class="mt-4">
-                            <a href="https://github.com/xiaoeyuSWU/wechat_jump" 
-                            target="_blank" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                                Github开源地址
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">5、一个"工院新生生存指南"</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>独立设计并且撰写了工院新生生存指南。在撰写指南的想法萌生后，搜寻了目前的西大新生指南，发现学校已经有团队在腾讯文档中实现了较为完善的新生指南，但缺乏细分领域针对特定专业同学的学业发展与个人规划等核心信息。</li>
+                            <li>为了不重复造轮子的同时做出差异性，实现新生指南能够提供有效信息的基本要求，基于工院新生垂直领域撰写了一个真正具有信息差的有价值的新生指南。</li>
+                            <li>本指南并非传统意义上的生活指南，而是深度整合了学业规划、专业发展、竞赛科研、奖学金政策等核心内容。通过系统性梳理工科院系的课程体系、培养方案等内容，帮助新生快速适应大学生活，明确发展方向，少走弯路。</li>
+                            <li class="mt-4">
+                                <a href="https://liboyuan.com.cn/new-swuer/" 
+                                   target="_blank" 
+                                   class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                    访问这个新生指南
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">6、一个基于HTML、CSS与JavaScript的个人网站的设计与实现</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>是的，就是你正在浏览的这个网站。它是我的第一款"产品"，旨在提供一个简洁、直观且具有互动性的页面，使访问者（比如你）能够方便地浏览和了解我的背景和成就。</li>
+                            <li>导航栏采用 "<a href="https://www.woshipm.com/pd/5482371.html" class="link" target="_blank">场景化分类</a>" 而非传统 "功能分类"，将 "AI 对话"" 留言板 " 等交互模块与静态信息并列。</li>
+                            <li>通过欢迎弹窗主动传递网站核心价值（"了解背景"），并附带<a href="https://liboyuan.com.cn/private/" class="link" target="_blank">隐私政策</a>链接，兼顾体验与合规。点击页面触发随机爱心动画，为专业展示类网站注入温度，通过微交互尝试增强情感连接。</li>
+                            <li>支持全站内容检索并高亮匹配结果，结合锚点跳转功能，解决长页面信息查找效率问题。</li>
+                            <li>将静态简历转化为交互式问答，通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/iframe" class="link" target="_blank">iframe</a> 嵌入专属训练的 AI 助手，解决传统个人网站 "单向展示" 的局限性。匿名留言板降低用户表达门槛，同时设置引导性文案，完善用户体验。</li>
+                            <li>内置用户行为采集模块（记录用户点击、停留时间等），为后续迭代提供数据支撑。</li>
+                            <li class="mt-4">
+                                <a href="https://github.com/xiaoeyuSWU/lby/tree/main" 
+                                   target="_blank" 
+                                   class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                    Github开源地址
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">7、Transformer教程</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>深入浅出地讲解了DeepSeek和ChatGPT背后的模型：Transformer。</li>
+                            <li>通过最简明、最生动和最通俗的语言，辅以图片，使得每个人，哪怕只是高中生，都能轻松理解这个复杂的概念。</li>
+                            <li class="mt-4">
+                                <a href="https://liboyuan.com.cn/trans/" 
+                                   target="_blank" 
+                                   class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                    访问这个教程
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">8、LLMs的本地模型部署与基于API的图形化界面开发</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>借助GPU加速技术与图形化平台，将LLMs本地部署至个人计算机中，显著提高了响应速度和数据安全，实现了离线状态下的模型推理。</li>
+                            <li>此外，我通过调用LLMs官方提供的API接口，我设计并开发了一个通用的图形化界面，实现与模型的便捷交互。</li>
+                            <li>界面友好、操作简单，适合日常问答、代码生成等多种场景使用，并支持快速调用多个模型进行对比测试。</li>
+                            <li>该项目不仅提升了我对大语言模型的应用理解，也加深了我对API集成、本地部署和界面设计的综合实践能力。</li>
+                        </ul>
+                    </div>
+
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">9、GCCVerML：一个基于机器学习的GCC编译器版本识别问题</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>我通过研究不同版本的GCC C++编译器的编译结果差异，提炼出一组显著特征，并利用恰当的特征工程基于机器学习算法构建了一个判别函数。</li>
+                            <li>在实际操作中，我使用了多组C++源代码对不同版本的编译器进行测试，系统性地分析和验证了判别函数的有效性。通过不断优化，该判别函数在不同代码场景下展现出了更强的泛化能力，准确率达90%，显著提升了其性能和可靠性。</li>
+                        </ul>
+                    </div>
+
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">10、<a href="https://github.com/xiaoeyuSWU/TimeSeqTransformer_001" class="link" target="_blank">TimeSeqTrans</a>：一个基于<a href="https://arxiv.org/abs/1706.03762" class="link" target="_blank">Transformer</a>进行时间序列数据预测的模型</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>我使用<a href="https://tushare.pro/" class="link" target="_blank">Tushare</a>的数据接口获取数据，进行模型的训练和完善。使用了滑动窗口的方法创建输入序列，并利用MinMaxScaler对每个序列进行归一化处理，确保数据在同一尺度上进行训练。</li>
+                            <li>项目采用了Transformer的编码器结构，结合<a href="https://developer.baidu.com/article/detail.html?id=2739596" class="link" target="_blank">位置编码</a>，用于处理时间序列数据，并在最后通过全连接层进行分类。通过实验调整模型的多个超参数，包括输入维度、隐藏层大小、编码层数、注意力头数、学习率、批次大小和训练轮数等。</li>
+                        </ul>
+                    </div>
+
+                    <div class="glassmorphism p-8" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4">11、<a href="https://github.com/xiaoeyuSWU/wechat_jump" class="link" target="_blank">JumpAuto</a>：一个基于自动化脚本和计算机视觉的跳一跳游戏助手</h3>
+                        <ul class="space-y-3 list-disc pl-6">
+                            <li>本项目包含两个子项目，分别通过用户自行选择位置和计算机视觉的方式识别跳跃起终点，利用PyAutoGUI、OpenCV等技术自动计算距离并模拟跳跃，实现微信"跳一跳"游戏的自动化操作。</li>
+                            <li>第一个子项目基于手动选择起点和终点位置，通过PyAutoGUI捕捉坐标，利用计算出的距离和按压时间触发模拟跳跃，为简单的游戏自动化提供了一种高效的实现方法。</li>
+                            <li>第二个子项目采用计算机视觉技术，自动识别玩家和目标位置，动态加载模板图片并通过模板匹配确定坐标，并根据距离模拟点击。该项目具备模板动态匹配和可视化功能，提升了操作精度和自动化智能性。</li>
+                            <li>项目采用了模板匹配、动态区域划分等技术，确保在不同屏幕分辨率下准确识别玩家与目标，同时具有可视化反馈功能，实时展示识别结果，便于调试和观察。</li>
+                            <li>项目支持长时间稳定运行，通过休息间隔策略防止频繁操作，并且可根据未来需求进一步扩展数据集和算法优化。</li>
+                            <li class="mt-4">
+                                <a href="https://github.com/xiaoeyuSWU/wechat_jump" 
+                                   target="_blank" 
+                                   class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                    Github开源地址
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </section>
-        
+
         <!-- 兴趣爱好部分 -->
         <section id="兴趣爱好" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
                 <h2 class="section-title text-2xl font-bold mb-6">兴趣爱好</h2>
-                <div class="space-y-4">
-                    <p>我喜欢编程🤖、跑步🏃‍、<a href="https://zhuanlan.zhihu.com/p/270606457" class="link" target="_blank">UNO🃏</a>、狼人杀🐺、冥想🧘‍♀️和阅读📕。</p>
-                    <p>在空闲时间，我喜欢探索新技术。这不仅可以提升我的专业技能，还可以开阔我的视野。</p>
-                    <p>冥想（包含<a href="https://zhuanlan.zhihu.com/p/401015499" class="link" target="_blank">Youga Nidra</a>）是我日常生活中的重要部分，通过冥想，我们能够放松身心，提升专注力和内在的平静。在繁忙的学业和项目之间，冥想可以帮助我们保持平衡和清晰的思维。截至2024年9月24日，<a href="https://tide.fm/#:~:text=%E6%BD%AE%E6%B1%90%E6%98%AF%E4%B8%80%E6%AC%BE%E5%A4%A7%E8%87%AA%E7%84%B6" class="link" target="_blank">潮汐app</a>记录了我数千分钟的冥想时长。</p>
+
+                <!-- 总览 -->
+                <div class="space-y-4 mb-8">
+                    <p>
+                        我的爱好大致可归纳为：<br>
+                        <span class="font-semibold text-blue-400">① 运动型</span> – 跑步🏃‍、卷腹/平板支撑💪、健身房训练🏋️；<br>
+                        <span class="font-semibold text-purple-400">② 沉浸型</span> – 冥想🧘‍♀️（含 <a href="https://zhuanlan.zhihu.com/p/401015499" class="link-elegant" target="_blank">Yoga Nidra</a>）、抄写✒️、并且计划以后有机会了要学画画🎨；<br>
+                        <span class="font-semibold text-green-400">③ 精神型</span> – 看电影🎬、听音乐🎵、读书📚。<br>
+                        <br>
+                        <span class="font-semibold text-gray-300">运动型爱好可以让人心情愉悦，还有助于身材管理。沉浸型爱好可以让人完全投入，放空自我，给持续思考或工作的大脑提供喘息之机。精神型爱好能丰富精神世界，提升谈吐与气质，改变思维方式。</span>
+                    </p>
+                </div>
+
+                <!-- 爱好卡片网格 -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 冥想卡片 -->
+                    <div class="hobby-card">
+                        <div class="text-4xl mb-4 text-center">🧘‍♀️</div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">冥想与内在平静</h3>
+                        <p class="text-sm text-gray-300 text-center">
+                            冥想（含 <a href="https://zhuanlan.zhihu.com/p/401015499" class="link-elegant" target="_blank">Yoga Nidra</a>）已融入我的每日仪式。它帮助我在繁忙的学业与项目之间保持专注与平衡。<br>
+                            截至 2024-09-24，<a href="https://tide.fm/" class="link-elegant" target="_blank">潮汐 App</a> 记录的冥想时长已达 <span class="font-semibold text-blue-400">数千分钟</span>，见证了持续的自我关照。
+                        </p>
+                    </div>
+
+                    <!-- 跑步健身卡片 -->
+                    <div class="hobby-card">
+                        <div class="text-4xl mb-4 text-center">🏃‍</div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">跑步与健身</h3>
+                        <p class="text-sm text-gray-300 text-center">
+                            我目前最远完成过 <span class="font-semibold text-green-400">16 km（操场 40 圈）</span> 的夜跑，短期目标是 20 km，不过这也差不多只是半马而已，以后还会越来越强的。<br>
+                            近期为降低体脂并练出腹肌，制定了健身计划，系统训练胸、腿、臂，持续记录体能数据。
+                        </p>
+                    </div>
+
+                    <!-- 编程技术卡片 -->
+                    <div class="hobby-card">
+                        <div class="text-4xl mb-4 text-center">🤖</div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">编程与技术探索</h3>
+                        <p class="text-sm text-gray-300 text-center">
+                            空闲时喜欢研究深度学习和前端开发。已经搭建了自己的云服务器并为所有站点接入后台分析。你现在所访问的这个网站就部署在我的云服务器上。
+                        </p>
+                    </div>
+
+                    <!-- 影视音乐卡片 -->
+                    <div class="hobby-card">
+                        <div class="text-4xl mb-4 text-center">🎬</div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">影视与音乐</h3>
+                        <p class="text-sm text-gray-300 text-center">
+                            是 <span class="font-semibold text-purple-400">宫崎骏</span> 忠实粉丝， N 刷过《千与千寻》《天空之城》等。<br>
+                            美剧最喜欢看《老友记》（最喜欢 <span class="font-semibold text-yellow-400">Phoebe</span> ）。音乐偏好 <span class="italic text-blue-400">王菲、孙燕姿、莫文蔚、方大同</span> 这些华语创作人。
+                        </p>
+                    </div>
+
+                    <!-- 阅读历史卡片 -->
+                    <div class="hobby-card">
+                        <div class="text-4xl mb-4 text-center">📚</div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">阅读与历史</h3>
+                        <p class="text-sm text-gray-300 text-center">
+                            喜欢看历史类和文学类的书籍。比如看过《盛唐的背影》等；阅读让谈吐与视野同步升级，也成为与朋友深聊的最佳话题源泉，我会不断坚持滴。不过不是为了阅读而阅读的被动坚持，而是在源源不断的正反馈中主动坚持^ ^
+                        </p>
+                    </div>
+
+                    <!-- 桌游卡片 -->
+                    <div class="hobby-card">
+                        <div class="text-4xl mb-4 text-center">🃏</div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">桌游</h3>
+                        <p class="text-sm text-gray-300 text-center">
+                            UNO 与狼人杀。狼人杀特别看重逻辑推理与临场表达能力，尤其是线下一起玩的时候。
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- 教育经历部分 -->
         <section id="教育经历" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
                 <h2 class="section-title text-2xl font-bold mb-6">教育经历</h2>
-                
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">西南大学 | 电气工程及其自动化（2024.09-至今）</h3>
-                        <ul class="list-disc pl-6 space-y-1">
-                            <li>主修电路原理，模拟电子技术，信号与系统，C程序设计基础，单片机原理与应用，电力电子技术，自动控制原理，电机学等。</li>
 
+                <div class="grid gap-6 lg:grid-cols-2">
+                    <!-- 腾讯实习 -->
+                    <div class="education-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 rounded-full bg-blue-500 mr-3"></div>
+                            <div>
+                                <h3 class="text-xl font-bold">腾讯 | CSIG实习生</h3>
+                                <p class="text-blue-400 text-sm">2025.06-2025.09</p>
+                            </div>
+                        </div>
+                        <ul class="list-disc pl-6 space-y-2 text-sm text-gray-300">
+                            <li>作为腾讯的实习生，在工作的同时，系统地学习了腾讯内部的各种新人课程以及腾讯产品经理创造营的进阶版课程。同时成功考取了腾讯的云从业者资格证。</li>
+                            <li class="mt-4">
+                                <a href="https://cloud.tencent.com/edu/training/cert/result-transfer?id=1753265164&lang=cn&checkParam=38CT0QvfalgilOGaWUv0tvDk+hWVU/7wAoVm+LVMxeC+5c/nCa/bbzy6bV3Su7X9" 
+                                   target="_blank" 
+                                   class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors text-sm">
+                                    查看我的从业者资格证证书
+                                </a>
+                            </li>
                         </ul>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">西南大学 | 机械设计制造及其自动化（2023.09-2024.06）</h3>
-                        <ul class="list-disc pl-6 space-y-1">
+
+                    <!-- 西南大学电气工程 -->
+                    <div class="education-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 rounded-full bg-purple-500 mr-3"></div>
+                            <div>
+                                <h3 class="text-xl font-bold">西南大学 | 电气工程及其自动化</h3>
+                                <p class="text-purple-400 text-sm">2024.09-至今</p>
+                            </div>
+                        </div>
+                        <ul class="list-disc pl-6 space-y-2 text-sm text-gray-300">
+                            <li>主修电路原理，模拟电子技术，信号与系统，C程序设计基础，单片机原理与应用，电力电子技术，自动控制原理，电机学等。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 西南大学机械设计 -->
+                    <div class="education-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 rounded-full bg-green-500 mr-3"></div>
+                            <div>
+                                <h3 class="text-xl font-bold">西南大学 | 机械设计制造及其自动化</h3>
+                                <p class="text-green-400 text-sm">2023.09-2024.06</p>
+                            </div>
+                        </div>
+                        <ul class="list-disc pl-6 space-y-2 text-sm text-gray-300">
                             <li>主修高等数学，线性代数，工程制图，大学生计算机基础，文献检索与科技论文写作，大学英语等。</li>
                         </ul>
                     </div>
+
+                    <!-- 网络平台学习 -->
+                    <div class="education-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 rounded-full bg-orange-500 mr-3"></div>
+                            <div>
+                                <h3 class="text-xl font-bold">网络平台 | B站和慕课</h3>
+                                <p class="text-orange-400 text-sm">2022.09-至今</p>
+                            </div>
+                        </div>
+                        <ul class="list-disc pl-6 space-y-2 text-sm text-gray-300">
+                            <li>我不局限于书本和课堂的知识，在网络平台上学了很多专业外的知识，比如编程。你现在看到的这个网站背后用到的技术，就是我在网上学的。</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
-        
-        <!-- 优化后的担任职务部分 -->
+
+        <!-- 担任职务部分 -->
         <section id="担任职务" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
                 <h2 class="section-title text-2xl font-bold mb-6">担任职务</h2>
-                <div class="space-y-5">
-                    <div class="flex flex-col md:flex-row justify-between items-start">
-                        <div>
-                            <h3 class="font-bold mb-1">腾讯 | CSIG部门实习生</h3>
-                            <p class="text-blue-400 mb-2">2025.06-2025.09</p>
-                            <p>负责腾讯的AI产品以及云计算产品的落地和解决方案。</p>
+
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+                    <!-- 腾讯实习生 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">💼</div>
+                            <h3 class="text-lg font-semibold mb-2">腾讯 | CSIG部门实习生</h3>
+                            <p class="text-blue-400 text-sm mb-3">2025.06-2025.09</p>
+                            <p class="text-sm text-gray-300">负责腾讯的AI产品以及云计算产品的落地和解决方案。</p>
                         </div>
                     </div>
-                    
-                    <div class="flex flex-col md:flex-row justify-between items-start">
-                        <div>
-                            <h3 class="font-bold mb-1">比亚迪 | 2025届校园大使</h3>
-                            <p class="text-purple-400 mb-2">2024.08-2024.12</p>
-                            <p>作为校企沟通的桥梁，负责校内社群搭建运营，并且协助HR举办校园招聘活动宣传及落地，协调线下活动。</p>
+
+                    <!-- 比亚迪校园大使 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🚗</div>
+                            <h3 class="text-lg font-semibold mb-2">比亚迪 | 2025届校园大使</h3>
+                            <p class="text-purple-400 text-sm mb-3">2024.08-2024.12</p>
+                            <p class="text-sm text-gray-300">作为校企沟通的桥梁，负责校内社群搭建运营，并且协助HR举办校园招聘活动宣传及落地，协调线下活动。</p>
                         </div>
                     </div>
-                    
-                    <div class="flex flex-col md:flex-row justify-between items-start">
-                        <div>
-                            <h3 class="font-bold mb-1">西南大学 | 班级学习委员</h3>
-                            <p class="text-green-400 mb-2">2023.09-2024.06</p>
-                            <p>完成老师安排的任务，为同学们服务和答疑解惑。获"优秀学生干部"称号。</p>
+
+                    <!-- 班级学习委员 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">📚</div>
+                            <h3 class="text-lg font-semibold mb-2">西南大学 | 班级学习委员</h3>
+                            <p class="text-green-400 text-sm mb-3">2023.09-2024.06</p>
+                            <p class="text-sm text-gray-300">完成老师安排的任务，为同学们服务和答疑解惑。获"优秀学生干部"称号。</p>
                         </div>
                     </div>
-                    
-                    <div class="flex flex-col md:flex-row justify-between items-start">
-                        <div>
-                            <h3 class="font-bold mb-1">西南大学 | 融媒体中心微博部干事</h3>
-                            <p class="text-yellow-400 mb-2">2022.09-2023.06</p>
-                            <p>负责编辑和运营学校官方微博。</p>
+
+                    <!-- 融媒体中心干事 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">📱</div>
+                            <h3 class="text-lg font-semibold mb-2">西南大学 | 融媒体中心微博部干事</h3>
+                            <p class="text-yellow-400 text-sm mb-3">2022.09-2023.06</p>
+                            <p class="text-sm text-gray-300">负责编辑和运营学校官方微博。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- 优化后的联系方式部分 -->
+
         <!-- 联系方式部分 -->
         <section id="联系方式" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
                 <h2 class="section-title text-2xl font-bold mb-6">联系方式</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center">
-                        <!-- 替换为国内CDN的Font Awesome图标 -->
-                        <i class="fa fa-phone mr-3 text-blue-400"></i>
-                        <a href="tel:18202391823" class="link">18202391823</a>
+                
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- 电话卡片 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">📞</div>
+                            <h3 class="text-lg font-semibold mb-2">电话</h3>
+                            <a href="tel:18202391823" class="link text-sm">18202391823</a>
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <!-- 替换为国内CDN的Font Awesome图标 -->
-                        <i class="fa fa-envelope-o mr-3 text-blue-400"></i>
-                        <a href="mailto:1920295921@qq.com" class="link">1920295921@qq.com</a>
+
+                    <!-- 邮箱卡片 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">📧</div>
+                            <h3 class="text-lg font-semibold mb-2">邮箱</h3>
+                            <a href="mailto:1920295921@qq.com" class="link text-sm">1920295921@qq.com</a>
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <!-- 替换为国内CDN的Font Awesome图标 -->
-                        <i class="fa fa-weixin mr-3 text-blue-400"></i>
-                        <span>quant_xey2004</span>
+
+                    <!-- 微信卡片 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">💬</div>
+                            <h3 class="text-lg font-semibold mb-2">微信</h3>
+                            <span class="text-sm text-gray-300">quant_xey2004</span>
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <!-- 替换为国内CDN的Font Awesome图标 -->
-                        <i class="fa fa-qq mr-3 text-blue-400"></i>
-                        <span>1920295921</span>
+
+                    <!-- QQ卡片 -->
+                    <div class="position-card">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🐧</div>
+                            <h3 class="text-lg font-semibold mb-2">QQ</h3>
+                            <span class="text-sm text-gray-300">1920295921</span>
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <!-- 替换为国内CDN的Font Awesome图标 -->
-                        <i class="fa fa-map-marker mr-3 text-blue-400"></i>
-                        <span>重庆市北碚区天生路2号西南大学，400715</span>
+
+                    <!-- 地址卡片 -->
+                    <div class="position-card md:col-span-2 lg:col-span-2">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">📍</div>
+                            <h3 class="text-lg font-semibold mb-2">地址</h3>
+                            <span class="text-sm text-gray-300">重庆市北碚区天生路2号西南大学，400715</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- 留言板部分 -->
         <section id="留言板" class="mb-20">
             <div class="glassmorphism p-8" data-aos="fade-up">
                 <h2 class="section-title text-2xl font-bold mb-6">留言板</h2>
                 <div class="mb-6 text-gray-300 light-mode:text-gray-600">
-                    <p class="mt-2">欢迎在这匿名对这个网站提出意见🎉当然，如果你认识我，也可以对我提出建议或意见。哪怕是“刺耳”甚至“扎心”的话，都请敞开来讲☺️</p>
+                    <p class="mt-2">欢迎在这匿名对这个网站提出意见🎉当然，如果你认识我，也可以对我提出建议或意见。哪怕是"刺耳"甚至"扎心"的话，都请敞开来讲☺️</p>
                     <p class="mt-2">请放心，除非你主动说明，否则我永远也不会知道你是谁🔒</p>
-                    <p class="mt-2">我希望听到平时藏在“没必要说出来伤和气”背后的真心话，有则改之，无则加勉🫡</p>
+                    <p class="mt-2">我希望听到平时藏在"没必要说出来伤和气"背后的真心话，有则改之，无则加勉🫡</p>
                 </div>
                 <form action="https://formspree.io/f/mvoenngy" method="post" class="space-y-4">
                     <div>
@@ -804,7 +612,7 @@
             </div>
         </section>
     </main>
-    
+
     <footer class="py-8 text-center text-gray-400">
         <p>© 2023 李博远. 保留所有权利.</p>
         <div class="mt-4">
@@ -812,343 +620,7 @@
             <p class="mt-1">Made with LOVE❤️ by LBY</p>
         </div>
     </footer>
-    
-    <script>
-        // 初始化AOS动画库
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-        // 欢迎界面关闭逻辑
-        document.addEventListener('DOMContentLoaded', function() {
-            const welcomeScreen = document.getElementById('welcome-screen');
-            const closeButton = document.getElementById('close-welcome');
 
-            
-            // 强制显示欢迎界面（无论是否首次访问）
-            welcomeScreen.style.display = 'flex';
-            welcomeScreen.style.opacity = '1';
-            
-            // 保留关闭按钮的逻辑
-            closeButton.addEventListener('click', function() {
-                // 发射五彩纸屑
-                launchConfettiFromButton();
-                
-                // 隐藏欢迎界面
-                welcomeScreen.style.opacity = '0';
-                setTimeout(function() {
-                    welcomeScreen.style.display = 'none';
-                }, 300);
-            });
-            
-            // 点击欢迎界面背景也能关闭
-            welcomeScreen.addEventListener('click', function(e) {
-                if (e.target === welcomeScreen) {
-                    welcomeScreen.style.opacity = '0';
-                    setTimeout(function() {
-                        welcomeScreen.style.display = 'none';
-                    }, 300);
-                }
-            });
-            
-        });
-        
-        // 主题切换
-        document.getElementById('theme-toggle').addEventListener('click', function() {
-            const body = document.body;
-            const icon = this.querySelector('i');
-            
-            body.classList.toggle('light-mode');
-            
-            if (body.classList.contains('light-mode')) {
-                icon.classList.remove('fa-moon-o');
-                icon.classList.add('fa-sun-o');
-            } else {
-                icon.classList.remove('fa-sun-o');
-                icon.classList.add('fa-moon-o');
-            }
-        });
-        
-        // 移动端菜单切换
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const icon = this.querySelector('i');
-            
-            mobileMenu.classList.toggle('active');
-            
-            if (mobileMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // 滚动进度条
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollProgress = (scrollTop / scrollHeight) * 100;
-            
-            document.getElementById('progress-bar').style.width = scrollProgress + '%';
-        });
-        
-        // 点击心形效果
-        document.addEventListener('click', function(e) {
-            const hearts = ['❤️', '🧡', '💛', '💚', '💙', '💜', '💖', '💗', '💓', '💞'];
-            
-            const heart = document.createElement('div');
-            heart.className = 'heart-animation';
-            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            
-            heart.style.left = (e.clientX - 12) + 'px';
-            heart.style.top = (e.clientY - 12) + 'px';
-            
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        });
-        
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // 如果是移动端菜单，点击后关闭菜单
-                    if (window.innerWidth <= 768) {
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        const menuButton = document.getElementById('mobile-menu-button');
-                        const icon = menuButton.querySelector('i');
-                        
-                        mobileMenu.classList.remove('active');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            });
-        });
-        
-        // 搜索功能
-        const searchModal = document.getElementById('search-modal');
-        const searchInput = document.getElementById('search-input');
-        const searchResults = document.getElementById('search-results');
-        const searchClose = document.getElementById('search-close');
-        const desktopSearchButton = document.getElementById('desktop-search-button');
-        const mobileSearchButton = document.getElementById('mobile-search-button');
-        
-        // 打开搜索模态框
-        function openSearchModal() {
-            searchModal.classList.add('active');
-            setTimeout(() => {
-                searchInput.focus();
-            }, 300);
-        }
-        
-        // 关闭搜索模态框
-        function closeSearchModal() {
-            searchModal.classList.remove('active');
-        }
-        
-        // 执行搜索
-        function performSearch() {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-            
-            if (!searchTerm) {
-                searchResults.innerHTML = `
-                    <div class="search-no-results">
-                        请输入关键词进行搜索
-                    </div>
-                `;
-                return;
-            }
-            
-            // 从页面中提取所有可搜索内容
-            const searchableElements = document.querySelectorAll('h2, h3, p, li');
-            const searchResultsArray = [];
-            
-            searchableElements.forEach(element => {
-                const text = element.textContent.toLowerCase();
-                
-                if (text.includes(searchTerm)) {
-                    // 获取元素所在的部分
-                    let section = element.closest('section');
-                    let sectionTitle = section ? section.querySelector('h2, h3')?.textContent || '其他部分' : '其他部分';
-                    
-                    // 获取元素的上下文
-                    let context = element.textContent;
-                    
-                    // 高亮匹配的关键词
-                    const highlightedContext = context.replace(
-                        new RegExp(searchTerm, 'gi'),
-                        match => `<span class="search-highlight">${match}</span>`
-                    );
-                    
-                    searchResultsArray.push({
-                        title: sectionTitle,
-                        content: highlightedContext,
-                        elementId: element.closest('section')?.id || null
-                    });
-                }
-            });
-            
-            // 显示搜索结果
-            if (searchResultsArray.length > 0) {
-                searchResults.innerHTML = '';
-                
-                searchResultsArray.forEach(result => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'search-result-item';
-                    resultItem.innerHTML = `
-                        <div class="search-result-title">${result.title}</div>
-                        <div class="search-result-content" 
-                             data-section-id="${result.elementId}">
-                            ${result.content}
-                        </div>
-                    `;
-                    
-                    // 添加点击事件，跳转到对应部分
-                    resultItem.addEventListener('click', () => {
-                        if (result.elementId) {
-                            const targetElement = document.getElementById(result.elementId);
-                            
-                            if (targetElement) {
-                                window.scrollTo({
-                                    top: targetElement.offsetTop - 100,
-                                    behavior: 'smooth'
-                                });
-                                
-                                closeSearchModal();
-                            }
-                        }
-                    });
-                    
-                    searchResults.appendChild(resultItem);
-                });
-            } else {
-                searchResults.innerHTML = `
-                    <div class="search-no-results">
-                        没有找到与 "${searchTerm}" 相关的内容
-                    </div>
-                `;
-            }
-        }
-        
-        // 事件监听
-        desktopSearchButton.addEventListener('click', openSearchModal);
-        mobileSearchButton.addEventListener('click', openSearchModal);
-        
-        // 点击模态框背景关闭
-        searchModal.addEventListener('click', (e) => {
-            if (e.target === searchModal) {
-                closeSearchModal();
-            }
-        });
-        
-        // 输入框变化时执行搜索
-        searchInput.addEventListener('input', performSearch);
-        
-        // 输入框按回车键执行搜索
-        searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-        
-        // ESC键关闭搜索
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && searchModal.classList.contains('active')) {
-                closeSearchModal();
-            }
-        });
-
-        // 新增（2025-07-20T12:02）
-        // 收集用户信息并发送到服务器
-        document.addEventListener('DOMContentLoaded', () => {
-        // ① 采集基本信息
-        const userInfo = {
-            startTime: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-            referrer: document.referrer,
-            interactions: []
-        };
-
-        // ② 记录点击等交互
-        document.addEventListener('click', event => {
-            userInfo.interactions.push({
-            time: new Date().toISOString(),
-            type: 'click',
-            target: event.target.tagName,
-            text: (event.target.innerText || '').slice(0, 50)
-            });
-        });
-
-        // ③ 统一发送函数
-        function flush() {
-            userInfo.endTime = new Date().toISOString();   // 更新离开时间
-            const payload = JSON.stringify(userInfo);
-
-            // 首选 sendBeacon；若不支持或失败则用 fetch keepalive
-            if (!navigator.sendBeacon || !navigator.sendBeacon('/collect.php', payload)) {
-            fetch('/collect.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-                body: payload,
-                keepalive: true        // 关键：允许在 pagehide 后继续传输
-            });
-            }
-        }
-
-        // ④ 在标签页进入后台或将被卸载时发送
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden') flush();
-        });
-
-        // ⑤ pagehide 是 iOS Safari 的兜底（once: true 保证只触发一次）
-        window.addEventListener('pagehide', flush, { once: true });
-        });
-
-        function launchConfettiFromButton() {
-            // 获取按钮元素
-            const button = document.getElementById('close-welcome');
-            if (!button) return;
-            
-            // 获取按钮位置
-            const rect = button.getBoundingClientRect();
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
-            
-            // 计算相对于视口的坐标
-            const viewportX = x / window.innerWidth;
-            const viewportY = y / window.innerHeight;
-            
-            // 配置五彩纸屑参数
-            confetti({
-                particleCount: 150,
-                spread: 120,
-                origin: { 
-                    x: viewportX, 
-                    y: viewportY 
-                },
-                scalar: 1.5,
-                startVelocity: 45,
-                disableForReducedMotion: true
-            });
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
